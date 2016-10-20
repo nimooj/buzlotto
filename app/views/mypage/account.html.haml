@@ -1,0 +1,40 @@
+%row.account_heading
+  계좌번호 등록
+
+%row.account_input
+  - if !@user
+    .select-box
+      = text_field_tag :bank, params[:bank], placeholder: '은행', class: 'select', disabled: true
+      = image_tag "ic_down.png"
+    %input{class: "account_number", placeholder: "계좌번호 입력"}
+  - else
+    .select-box
+      = text_field_tag :bank, params[:bank], placeholder: "#{@user[:bank]}", class: 'select', disabled: true
+      = image_tag "ic_down.png"
+    %input{class: "account_number", placeholder: "계좌번호 입력", value: "#{@user[:account_num]}"}
+
+= render 'partials/account_popup'
+
+%row.account_btn
+  - if !@user
+    %button
+      등록하기
+  - else
+    %button
+      수정하기
+
+%row.account_info
+  %ul
+    %li
+      은행 계좌번호는 캠페인 참여자 본인이 아닌 경우 경품 지급이 어려울 수 있습니다.
+      %li
+        미성년자의 경우 가족관계증명서 제출 등을 통해 법적 대리인이 경품을 지급받을 수 있습니다.
+      %li
+        회원님의 계좌 정보는 암호화되어 저장되며 탈퇴시 지체없이 파기됩니다.
+
+:javascript
+  $(function(){
+  $(".select-box").click(function(){
+    account_popup();
+  });
+  });

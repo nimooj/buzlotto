@@ -1,0 +1,48 @@
+.step2
+  %row.step_heading
+    회원가입 (2/3)
+
+  %row.step_gender
+    .select
+      %select{name: 'gender', id: 'gender', class: 'gender_select'}
+        %option{value: 'none', disabled: true, selected: true} 성별
+        %option{value: 'F'} 여자
+        %option{value: 'M'} 남자
+      = image_tag "ic_down.png", class: "ic_down"
+
+  %row.step_age
+    .select
+      %select{name: 'age', id: 'age', class: 'age_select'}
+        %option{value: 'none', disabled: true, selected: true} 출생연도
+      = image_tag "ic_down.png", class: "ic_down"
+
+  %row.step_btn
+    %button.next_btn{disabled:true}
+      다음
+
+:javascript
+  $(function(){
+    determine_age_range();
+
+    var g = "";
+    var a = "";
+
+    var gc = 0;
+    var ac = 0;
+
+    $(".gender_select").change(function(){
+      g = $(this).val();
+      gc = 1;
+      validate_next2(gc, ac);
+    });
+
+    $(".age_select").change(function(){
+      a = $(this).val();
+      ac = 1;
+      validate_next2(gc, ac);
+    });
+
+    $(".step2 .step_btn").click(function(){
+      step2_nxt();
+    });
+  });

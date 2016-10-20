@@ -1,0 +1,134 @@
+//캠페인 팝업
+.container {
+  .campaign {
+    .campaign_enroll {
+      .popup_campaign {
+        @extend .available_campaign_list;
+        .coupon {
+          visibility: hidden;
+        }
+        @media screen and (max-device-width: 420px) {
+          padding: 1.5em 1.3em;
+          height: 6em;   
+          margin-bottom: 1.5em;
+        }
+        border: none;
+        padding: 43px;
+        height: 216px;
+        text-align: left;
+        margin-bottom: 50px;
+      }
+      .popup_heading {
+        @media screen and (max-device-width: 420px) {
+          font-size: 1.5em;   
+          margin-bottom: .2em;
+        }
+        @media screen and (max-device-width: 360px) {
+          font-size: 1.2em;   
+          margin-bottom: .6em;
+        }
+        font-size: 43px;
+        font-weight: bold;
+        margin-bottom: 58px;
+      }
+      .popup_txt {
+        .info {
+          display: inline-block;
+          text-align: left;   
+          line-height: 1.2 * $base-line-height;
+          margin-top: -1em;
+        }
+        @media screen and (max-device-width: 420px) {
+          width: 100%;
+          display: inline;
+          font-size: 1.2em;   
+          padding: 1em;
+        }
+        @media screen and (max-device-width: 360px) {
+          font-size: 1em;   
+          padding: .5em;
+        }
+        height: 292px;
+        color: #9a9a9a;
+        line-height: 1.1 * $base-line-height;
+      }
+      .popup_btn {
+        .btn_mid { display: none; }
+        .btn_l.install_check { display: none; }
+        .btn_l.go_campaign {
+          @media screen and (max-device-width: 420px) {
+            top: 2em;
+          }
+          display: block;
+          top: 59px;
+        }
+        .btn_r {
+          @media screen and (max-device-width: 420px) {
+            top: 2em;
+          }
+          top: 59px;
+        }
+        //a {
+          //margin: 60px 32px 0 32px;   
+        //}
+        position: relative;
+      }
+      @media screen and (max-device-width: 420px) {
+        width: 28em;
+        height: 33em;
+      }
+      @media screen and (max-device-width: 360px) {
+        width: 26em;
+        height: 28em;
+      }
+      @media screen and (max-device-width: 320px) {
+        width: 24em;
+        height: 28em;
+      }
+      background-color: #f3f3f3;
+      width: 820px;
+      height: 931px;
+    }
+    
+    //cpi type용 캠페인 팝업 설정
+    .campaign_enroll.cpi_campaign {
+      .popup_btn {
+        .btn_mid {
+          @media screen and (max-device-width: 420px) {
+            width: 21.5em;
+            top: 2em;
+          }
+          display: block;
+          position: absolute;
+          left: 50%;
+          -webkit-transform: translateX(-50%);
+          -ms-transform: translateX(-50%);
+          transform: translateX(-50%);
+          top: 64px;
+        }
+        .btn_l.go_campaign { display: none; }
+        .btn_l.install_check {
+          @media screen and (max-device-width: 420px) {
+            top: 7em;
+          }
+          display: block;
+          top: 194px;
+        }
+        .btn_r {
+          @media screen and (max-device-width: 420px) {
+            top: 7em;
+          }
+          top: 194px;
+        }
+        position: relative;
+      }
+      @media screen and (max-device-width: 420px) {
+        height: 37em;
+      }
+      @media screen and (max-device-width: 360px) {
+        height: 34em;
+      }
+      height: 1040px;
+    }
+  }
+}

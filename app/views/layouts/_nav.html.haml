@@ -1,0 +1,17 @@
+%nav.nav
+  .brand
+    .brand-logo
+      = link_to (image_tag "logo.png"), root_path
+  .menu
+    .item
+  .user-info
+
+:javascript
+  $(function(){
+    if(Cookies.get('c_user')) {
+      $(".user-info").html("<a href='/mypage/index'>마이페이지</a>");
+    }
+    else {
+      $(".user-info").html("<a href='/log/index'>로그인</a>");
+    }
+  });

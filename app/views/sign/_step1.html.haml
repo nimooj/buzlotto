@@ -1,0 +1,85 @@
+.step1
+  %row.step_heading
+    회원가입 (1/3)
+
+  %row.step_id
+    .heading
+      아이디 입력
+    .insert
+      = text_field_tag "id", params[:id], placeholder: '6자 ~ 20자 입력하세요.', class: 'id_insert', minlength: 6, maxlenght: 20
+      %button.id_confirm{disabled: true}
+        = image_tag "btn/name_check_invalid.png"
+        -#= image_tag "ic_check_grey.png", class: 'ic_check_grey'
+        -#중복 확인
+
+  %row.step_pw
+    .heading
+      비밀번호 입력
+    .insert
+      = password_field_tag "pw", params[:pw], placeholder: '영문, 숫자 포함 6자리 이상 입력해주세요.', class: 'pw_insert', minlength: 6, pattern: "^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$"
+
+  %row.step_pw_confirm
+    .heading
+      비밀번호 재입력
+    .insert
+      = password_field_tag "pw_confirm", params[:pw_confirm], placeholder: '영문, 숫자 포함 6자리 이상 입력해주세요.', class: 'pw_confirm_insert', minlength: 6, pattern: "^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$"
+
+  %row.step_confirm
+    = render 'partials/checkbox'
+    = link_to '서비스 이용약관', buzz_service_path
+    , 
+    = link_to '개인정보 취급 방침', buzz_privacy_path
+    동의합니다.
+
+  %row.step_btn
+    %button.next_btn{disabled:true, onclick:"validate_password()"}
+      다음
+
+:javascript 
+  $(function() {
+    var n = "";
+    var checked = $(".step1 .checkbox").data("checked");
+    var p = 0;
+    var pc = 0;
+
+    validate_username();
+
+    $("button.id_confirm").click(function(){
+      //n = id_check();
+      n = 1;
+      if(n) {
+        alert("사용 가능한 아이디입니다.");
+      }
+      else {
+        alert("중복된 아이디입니다. 다시 시도하세요.");
+      }
+      validate_next1(n, checked, p, pc);
+    });
+
+    $(".step1 .checkbox").click(function(){
+      checked = $(this).is(":checked");
+      validate_next1(n, checked, p, pc);
+    });
+
+    $("input.pw_insert").keyup(function(){
+      p = 1;
+      validate_next1(n, checked, p, pc);
+    });
+    $("input.pw_confirm_insert").keyup(function(){
+      pc = 1;
+      validate_next1(n, checked, p, pc);
+    });
+    
+  $(".step1 .next_btn").click(function(){
+    var result = validate_password();
+    if(result == 1) {
+      step1_nxt();
+    }
+    else if ( result == 2 ) {
+      alert("비밀번호는 영문, 숫자 포함 6자리 이상이어야 합니다.");
+    }
+    else {
+      alert("비밀번호를 다시 입력해주세요.");
+    }
+  });
+  });

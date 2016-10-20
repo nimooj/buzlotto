@@ -1,0 +1,20 @@
+%row.banner
+  = image_tag 'main_banner.png', class: 'banner_img'
+
+%row.mypage_btn
+  = link_to (image_tag "btn/account_enroll.png"), mypage_account_path, class: "account_btn", method: :get
+  = link_to (image_tag "btn/change_pw.png"), mypage_pw_path, method: :get
+  = link_to (image_tag "btn/question.png"),"mailto:support@buzlotto.com"
+  = image_tag "btn/logout.png", class: 'logout_btn'
+  = link_to (image_tag "btn/signout.png"), mypage_signout_path, method: :get
+
+:javascript 
+  $(function(){
+    var wrapper = "<div class='banner_content'><div class='banner_heading'>" + Cookies.get('c_user') + "님의 보유 로또권은 <span class='highlight green'>? 장</span>입니다.</div><div class='banner_btn mypage_banner_btn'><a href='/mypage/history'><img src='/assets/btn/lottohistory.png'/></a></div></div><img class='banner_img' src='/assets/main_banner_black.png'>";
+    $("row.banner").html(wrapper);
+
+    $(".logout_btn").click(function(){
+      Cookies.remove('c_user');
+      window.location.replace('/');
+    });
+  });

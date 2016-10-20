@@ -1,0 +1,27 @@
+%row.invite
+  .text
+    친구야 나눠줄게, 
+    %span.highlight.yellow
+      좋은 기운!
+    %br
+    친구 초대하고 
+    %span.highlight.green
+      로또권 3장 
+    얻기
+
+  .invite_btn
+    = image_tag "btn/btn_invite.png"
+
+:javascript
+  $(function() {
+    $(".invite_btn").click(function(){
+      close_popup();
+      if(Cookies.get('c_user')) {
+        window.location = '/buzz/share';
+      }
+      else {
+        $(".filter").css('display', 'block');
+        $(".popup.joinus").css('display', 'block');
+      }
+    });
+  });

@@ -1,0 +1,59 @@
+.container {
+  .banner {
+    img.banner_img {
+      z-index: -1;
+    }
+    .banner_content {
+      .banner_heading {
+        @media screen and (max-device-width: 420px) {
+          font-size: 1.4em;
+        }
+        color: #ffffff;
+        font-weight: lighter;
+        font-size: 40px;
+      }
+      .banner_btn {
+        form { display: inline-block; }
+        .btn_l, .btn_r {
+          @media screen and (max-device-width: 420px) {
+            width: 9em;
+            font-size: 1.3em;
+            margin: 1.2em .5em;
+          }
+          @media screen and (max-device-width: 320px) {
+            width: 11em;
+            font-size: 1em;
+            margin: 1em .5em;
+          }
+          font-size: 40px;
+          font-weight: lighter;
+          background-color: white;
+          border-radius: $base-border-radius;
+          width: 396px;
+          height: auto;
+          margin: 40px 19.5px 0 19.5px;
+        }
+        .btn_l {
+          color: #ffffff;
+          background-color: $green;
+        }
+        .btn_r {
+          color: #666666;   
+        }
+      }
+      @media screen and (max-device-width: 420px) {
+        /*margin-top: 1.3em;*/
+        margin-top: 2em;
+      }
+      position: absolute;
+      left: 50%;
+      -webkit-transform: translateX(-50%);
+      -ms-transform: translateX(-50%);
+      transform: translateX(-50%);
+      width: 100%;
+      margin-top: 80px;
+    }
+    position: relative;
+    width: 100%;
+  }
+}

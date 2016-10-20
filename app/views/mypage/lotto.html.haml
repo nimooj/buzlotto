@@ -1,0 +1,43 @@
+%row.lotto_footer_btn
+  %button.lotto_auto_btn
+    자동 입력
+  %button.lotto_enroll_btn{disabled: true}
+    등록하기
+
+%row.lotto_heading
+  = session[:authorized_user]
+  님의 보유 로또권은
+  %span.highlight.green
+    ? 장
+  입니다.
+
+%row.lotto_field
+  - (1..45).each do |c|
+    - if @arr.include? c.to_s
+      %div{class: "lotto_ball lotto_active_#{c}", onclick: "lotto_select($(this).attr('class'));"}
+        %p.num
+          = c
+    - else
+      %div{class: "lotto_ball lotto_inactive_#{c}", onclick: "lotto_select($(this).attr('class'));"}
+        %p.num
+          = c
+
+%row.lotto_select_heading
+  선택한 로또 번호
+
+%row.lotto_select
+  - (1..6).each do |i|
+    %div{class: "lotto_selected ball_#{i}"}
+      %p.num
+        ?
+
+  
+= render 'partials/lotto_enroll'
+
+:javascript
+  $(function(){
+    set_field([]);
+    $("button.lotto_auto_btn").on('click', function(){
+      lotto_auto_select();
+    });
+  });

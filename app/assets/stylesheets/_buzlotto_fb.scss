@@ -1,0 +1,19 @@
+.container {
+  iframe {
+    @media screen and (min-device-width: 600px) {
+      transform: scale(1.9, 1.9);
+      margin-top: 88px;
+    }
+    @media screen and (max-device-width: 320px) {
+      transform: scale(.95, .95);
+      margin-left: -.6em;
+    }
+  }      
+  //.buzlotto_fb {
+    //@media screen and (max-device-width: 420px) {
+      //width: 100%;
+    //}
+    //width: 100%;
+    //overflow-x: hidden;
+  //}
+}

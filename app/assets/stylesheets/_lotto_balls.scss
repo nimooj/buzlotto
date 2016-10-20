@@ -1,0 +1,87 @@
+.container {
+  .lotto_field {
+    @for $i from 1 through 9 {
+      .lotto_inactive_#{$i} {
+        border-color: $lotto_yellow;
+      }
+      .lotto_active_#{$i} {
+        color: $background-color;
+        background-color: $lotto_yellow;
+      }
+    }
+    @for $i from 10 through 19 {
+      .lotto_inactive_#{$i} {
+        border-color: $lotto_blue;
+      }
+      .lotto_active_#{$i} {
+        color: $background-color;
+        background-color: $lotto_blue;
+      }
+    }
+    @for $i from 20 through 29 {
+      .lotto_inactive_#{$i} {
+        border-color: $lotto_red;
+      }
+      .lotto_active_#{$i} {
+        color: $background-color;
+        background-color: $lotto_red;
+      }
+    }
+    @for $i from 30 through 39 {
+      .lotto_inactive_#{$i} {
+        border-color: $lotto_green;
+      }
+      .lotto_active_#{$i} {
+        color: $background-color;
+        background-color: $lotto_green;
+      }
+    }
+    @for $i from 40 through 45 {
+      .lotto_inactive_#{$i} {
+        border-color: $lotto_purple;
+      }
+      .lotto_active_#{$i} {
+        color: $background-color;
+        background-color: $lotto_purple;
+      }
+    }
+  }
+
+  .lotto_select {
+    @for $i from 1 through 9 {
+      .lotto_active_#{$i} {
+        color: white;
+        border-color: $lotto_yellow;
+        background-color: $lotto_yellow;
+      }
+    }
+    @for $i from 10 through 19 {
+      .lotto_active_#{$i} {
+        color: white;
+        border-color: $lotto_blue;
+        background-color: $lotto_blue;
+      }
+    }
+    @for $i from 20 through 29 {
+      .lotto_active_#{$i} {
+        color: white;
+        border-color: $lotto_red;
+        background-color: $lotto_red;
+      }
+    }
+    @for $i from 30 through 39 {
+      .lotto_active_#{$i} {
+        color: white;
+        border-color: $lotto_green;
+        background-color: $lotto_green;
+      }
+    }
+    @for $i from 40 through 45 {
+      .lotto_active_#{$i} {
+        color: white;
+        border-color: $lotto_purple;
+        background-color: $lotto_purple;
+      }
+    }
+  }
+}

@@ -1,0 +1,21 @@
+= render 'partials/black_overlay'
+.popup.joinus
+  .popup_select
+    = image_tag "btn_close.png", class: 'close_btn'
+  .popup_txt
+    캠페인을 참여하기 위해선
+    %br
+    회원가입이 필요합니다.
+  .popup_heading
+    회원가입을 하시겠습니까?
+  .popup_btn
+    = link_to (image_tag 'btn/signup_btn.png'), sign_step_path
+    = link_to (image_tag 'btn/login_btn.png'), log_index_path
+
+:javascript
+  $(function(){
+    $(".btn_r").click(function(){
+      $(".filter").css('display', 'none');
+      $(".popup").css('display', 'none');
+    });
+  });

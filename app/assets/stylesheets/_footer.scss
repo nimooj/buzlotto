@@ -1,0 +1,28 @@
+.container {
+  .footer {
+    div {
+      display: inline-block;
+      padding: $base-spacing/2;
+    }
+    a {
+      color: #3a3a3a;
+    }
+    .service, .privacy {
+      font-weight: bold;
+    }
+    @media screen and (max-device-width: 420px) {
+      font-size: 1em;
+      margin-top: 1.5em;
+    }
+    @media screen and (max-device-width: 360px) {
+      font-size: .9em;
+    }
+    @media screen and (max-device-width: 320px) {
+      font-size: .8em;
+    }
+    font-size: 28px;  
+    display: inline-block;
+    margin-top: 138px;
+    margin-bottom: 20px;
+  }
+}

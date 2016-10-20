@@ -1,0 +1,294 @@
+.container {
+  .step_heading {
+    @media screen and (max-device-width: 420px) {
+      font-size: 1.7em;
+      margin-top: 1em;
+      margin-bottom: 2em;
+    }
+    display: block;
+    font-size: 44px;
+    margin-top: 79px;
+  }
+
+  .step_btn {
+    .next_btn {
+      @media screen and (max-device-width: 420px) {
+        font-size: 1.5em;
+        width: 16.5em;
+        height: 3em;
+        margin-top: 0;
+        margin-bottom: .3em;
+      }
+      @media screen and (max-device-width: 320px) {
+        font-size: 1.3em;
+        width: 16.5em;
+        height: 3em;
+      }
+      margin-bottom: 30px;
+      display: inline-block;
+      position: relative;
+      top: 33px;
+      width: 820px;
+      height: 112px;
+      background-color: #e6e6e6;
+      font-weight: normal;
+      font-size: 40px;
+      color: #c3c3c3;
+      text-align: center;
+      border-radius: 8px;
+    }
+    @media screen and (max-device-width: 420px) {
+      margin-top: .6em;
+    }
+    @media screen and (max-device-width: 320px) {
+      margin-top: -.8em;
+    }
+    display: inline-block;
+  }
+
+  .step1 {
+    .step_id, .step_pw, .step_pw_confirm {
+      .heading {
+        @media screen and (max-device-width: 420px) {
+          font-size: 1.2em;
+          margin-bottom: .8em;
+          margin-left: .5em;
+        }
+        @media screen and (max-device-width: 320px) {
+          font-size: 1.2em;
+          margin-bottom: .1em;
+        }
+        margin-bottom: 44px;
+        font-size: 30px;
+        text-align: left;
+      }
+      .insert {
+        input.id_insert, input.pw_insert, input.pw_confirm_insert {
+          @media screen and (max-device-width: 420px) {
+            width: 20em;
+            font-size: 1.2em;
+            margin-bottom: 1em;
+            border-bottom: 1px solid #cecece;
+          }
+          width: 920px;
+          text-align: left;
+          font-size: 37px;
+          font-weight: normal;
+          font-family: Sans-serif;
+          background-color: transparent;
+          border: none;
+          border-bottom: 3px solid #cecece;
+          border-radius: 0;
+          -webkit-box-shadow: none;
+          -moz-box-shadow: none;
+          box-shadow: none;
+        }
+        .id_confirm {
+          @media screen and (max-device-width: 420px) {
+            width: 7em;
+            height: 2.5em;
+            font-size: 1.2em;
+          }
+          opacity: 1;
+          position: absolute;
+          bottom: 9px;
+          right: 0;
+          padding: 0;
+          width: 263px;
+          height: 81px;
+          background-color: $background-color;
+        }
+        position: relative;
+      }
+      @media screen and (max-device-width: 420px) {
+        margin-bottom: 1em;   
+      }
+      margin-bottom: 80px;
+    }
+    .step_confirm {
+      a {
+        @media screen and (max-device-width: 420px) {
+          font-size: 1em;
+        }
+        @media screen and (max-device-width: 320px) {
+          font-size: .8em;
+        }
+        color: #666666;
+        text-decoration: underline;
+      }
+      .checkbox {
+        @media screen and (max-device-width: 420px) {
+          margin-right: .5em;
+        }
+        margin-right: 21px;
+      }
+      @media screen and (max-device-width: 420px) {
+        margin-top: 0;
+        margin-bottom: 0;
+        font-size: 1em;
+        margin-left: -2em;
+      }
+      @media screen and (max-device-width: 320px) {
+        font-size: 1.1em;
+        margin-left: -.3em;
+        margin-bottom: .2em;
+      }
+      color: #666666;
+      font-size: 33px;
+      display: inline-block;
+      margin-bottom: 60px;
+      text-align: center;
+    }
+  }
+  
+  .step2 {
+    .step_gender {
+      .heading {
+        @media screen and (max-device-width: 420px) {
+          font-size: 1.2em;
+          margin-bottom: .8em;
+        }
+        @media screen and (max-device-width: 320px) {
+          font-size: 1.2em;
+          margin-bottom: .1em;
+        }
+        margin-bottom: 44px;
+        font-size: 30px;
+        text-align: left;
+      }
+      .select {
+        .gender_select {
+          @media screen and (max-device-width: 420px) {
+            width: 7em;
+            font-size: 1.5em;
+            padding: .5em .7em;
+            border-bottom: 1px solid #cecece;
+          }
+          @media screen and (max-device-width: 320px) {
+            width: 6em;
+            font-size: 1.2em;
+            padding: .5em .7em;
+            border-bottom: 1px solid #cecece;
+          }
+          color: #666666;
+          width: 332px; 
+          font-size: 35px;
+          font-weight: normal;
+          background-color: transparent;
+          border: none;
+          border-bottom: 3px solid #cecece;
+          border-radius: 0;
+          -webkit-appearance: none;
+          -moz-appearance: none;
+          appearance: none;
+          padding: 36px 32px;
+        }
+        .ic_down {
+          @media screen and (max-device-width: 420px) {
+            width: 1em;
+            top: 40%;
+            right: .3em;
+          }
+          position: absolute;
+          top: 50%;
+          right: 0; 
+        }  
+        position: relative;
+      }
+      @media screen and (max-device-width: 420px) {
+        margin: 1em 3em 0 0;
+      }
+      margin-top: 107px;
+      margin-right: 157px;
+    }
+    .step_age {
+      /*.heading {*/
+        /*@media screen and (max-device-width: 420px) {*/
+          /*font-size: 1.2em;*/
+          /*margin-bottom: .8em;*/
+        /*}*/
+        /*@media screen and (max-device-width: 320px) {*/
+          /*font-size: 1.2em;*/
+          /*margin-bottom: .1em;*/
+        /*}*/
+        /*margin-bottom: 44px;*/
+        /*font-size: 30px;*/
+        /*text-align: left;*/
+      /*}*/
+      .select {
+        .age_select {
+          @media screen and (max-device-width: 420px) {
+            width: 7em;
+            font-size: 1.5em;
+            font-family: Sans-serif;
+            padding: .5em .7em;
+            border-bottom: 1px solid #cecece;
+          }
+          @media screen and (max-device-width: 320px) {
+            width: 6em;
+            font-size: 1.2em;
+            padding: .5em .7em;
+            border-bottom: 1px solid #cecece;
+          }
+          color: #666666;
+          width: 332px; 
+          font-size: 35px;
+          font-weight: normal;
+          background-color: transparent;
+          border: none;
+          border-bottom: 3px solid #cecece;
+          border-radius: 0;
+          -webkit-appearance: none;
+          -moz-appearance: none;
+          appearance: none;
+          padding: 36px 32px;
+        }    
+        .ic_down {
+          @media screen and (max-device-width: 420px) {
+            width: 1.2em;
+            top: 40%;
+            right: .3em;
+          }
+          position: absolute;
+          top: 50%;
+          right: 0; 
+        }
+        position: relative;
+      }
+      @media screen and (max-device-width: 420px) {
+        margin-top: 1em;
+      }
+      margin-top: 107px;
+      display: inline-block;
+    }
+    display: none;
+  }
+
+  .step3 {
+    .step_heading {
+      @extend .find_pw_heading;
+      @media screen and (max-device-width: 420px) {
+        font-size: 1.5em;
+        margin-bottom: .8em;
+      }
+      @media screen and (max-device-width: 320px) {
+        font-size: 1.2em;
+        margin-bottom: .1em;
+      }
+    }
+    .step_phonenumber {
+      @extend .find_pw_phonenumber;
+    }
+    .step_phonenumber_btn {
+      @extend .find_pw_phonenumber_btn;
+    }
+    .step_insert_cnum {
+      @extend .find_pw_insert_cnum;    
+    }
+    .step_confirm_btn {
+      @extend .find_pw_confirm_btn;
+      text-align: center;
+    }
+    display: none;
+  }
+} 

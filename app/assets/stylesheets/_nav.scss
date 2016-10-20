@@ -1,0 +1,42 @@
+.nav {
+  a {
+    color: black;
+  }
+  div {
+    display: inline-block;
+    vertical-align: text-top;
+  }
+  .user-info {
+    @media screen and (max-device-width: 420px) {
+      font-size: .8em;
+    }
+    float: right;
+  }
+  .brand-logo {
+    img {
+      @media screen and (max-device-width: 420px) {
+        height: 1.5em;
+        vertical-align: middle;
+        margin-top: -1em;
+      }
+      height: 60px;
+      margin-top: -10px;
+    }
+  }
+  @media screen and (max-device-width: 420px) {
+    height: 3em;
+    font-size: 1.3em;
+    padding: 1em 1em;
+    border-bottom: 1px solid #c1c1c1;
+  }
+  font-size: $heading-font-size;
+  color: #333333;
+  padding: 37px 32px;
+  text-align: left;
+
+  position: absolute;
+  top: 0;
+
+  height: 110px;
+  border-bottom: 4px solid #c1c1c1;
+}

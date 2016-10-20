@@ -1,0 +1,28 @@
+.container {
+  .signup_heading {
+    @extend .bg-container;
+    margin-top: 148px;
+    font-size: 60px;
+    color: $green;
+  }
+  .signup_select {
+    button {
+      a {
+        color: #969696;
+      }
+      height: 122px;
+      width: 665px;
+      font-size: 41px;
+      font-weight: lighter;
+      margin-bottom: 23px;
+      border: 3px solid #969696;
+      border-radius: $base-border-radius;
+      background-color: $background-color;
+    }
+    .fb_signup {
+      color: $fb_color;
+      border: 3px solid $fb_color;
+    }
+    margin-top: 108px;
+  }
+}

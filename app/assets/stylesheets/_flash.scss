@@ -1,0 +1,14 @@
+.container {
+  .flash {
+    font-size: 18px;
+    font-weight: lighter;
+    background-color: lighten($green, 20%);
+
+    border: 3px solid $green;
+    padding: 10px 20px;
+    margin-bottom: 30px;
+
+    color: white;
+    @extend .bg-container;
+  }
+}

@@ -1,0 +1,10 @@
+%row.banner
+  = image_tag 'main_banner.png', class: 'banner_img'
+
+:javascript 
+  $(function(){
+    if(Cookies.get('c_user')) {
+      var wrapper = "<div class='banner_content'><div class='banner_heading'>" + Cookies.get('c_user') + "님의 보유 로또권은 <span class='highlight green'>? 장</span>입니다.</div><div class='banner_btn'><a href='/mypage/lotto'><img class='btn_l' src='/assets/btn/btn_register.png'/></a><a href='/win'><img class='btn_r' src='/assets/btn/btn_confirm.png'></a></div></div><img class='banner_img' src='/assets/main_banner_black.png'>";
+      $("row.banner").html(wrapper);
+    }
+  });

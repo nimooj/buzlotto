@@ -1,0 +1,10 @@
+= render 'partials/black_overlay'
+.popup.unavailable
+  .popup_select
+    = image_tag "btn_close.png", class: 'close_btn'
+  .popup_txt
+    = image_tag "ic_no.png"
+    %br
+    참여할 수 없는 캠페인입니다. 
+  .popup_btn
+    = link_to (image_tag 'btn/confirm_btn.png'), '#'

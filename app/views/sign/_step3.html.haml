@@ -1,0 +1,55 @@
+.step3
+  %row.step_heading
+    회원가입 (3/3)
+
+  %row.step_phonenumber
+    = text_field_tag :phone_number, params[:phone_number], placeholder: "휴대폰 번호(ex. 01012345678)", class: 'phonenumber'
+
+  %row.step_phonenumber_btn
+    %button{disabled: true}
+      인증번호 받기
+
+  %row.step_insert_cnum
+    .heading
+      인증번호
+    = text_field_tag :cnum, params[:cnum], pattern: "[0-9]{6}", class: "cnum"
+    .content
+      SMS로 수신된 인증번호를 입력하세요. 
+      = link_to '인증번호 재전송'
+
+  %row.step_confirm_btn
+    %button{disabled: true}
+      인증 완료 
+
+:javascript 
+  $(function(){
+     var bc = 0;
+     var sc = 0;
+     var vc = 0;
+
+    $(".step_phonenumber_btn").click(function(){
+      send_sms();
+      bc = 1;
+      validate_next3(sc, bc, vc);
+    });
+
+    $("input.phonenumber").keyup(function(){
+      sc = validate_phonenum();
+      validate_next3(sc, bc, vc);
+    });
+    
+    $("input.cnum").keyup(function(){
+      vc = 1;
+      validate_next3(sc, bc, vc);
+    });
+
+    $(".step_confirm_btn button").click(function(){
+      var is_valid = validate_vnum();
+      if (is_valid == 1) {
+        signup_account();
+      }
+      else {
+        alert("다시 시도해주세요.");
+      }
+    });
+  });

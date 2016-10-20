@@ -1,0 +1,30 @@
+= render 'partials/black_overlay'
+.popup.lotto_enroll
+  .popup_select
+    = image_tag "btn_close.png", class: 'close_btn'
+  .popup_txt
+    로또가 등록되었습니다.
+    %br
+    계속 등록 하시겠습니까?
+  .popup_heading
+    현재 보유 로또권&nbsp;
+    = image_tag "ic_b.png"
+    %span.highlight.green
+      ? 장
+  .popup_btn
+    = link_to (image_tag 'btn/lotto_enroll.png'), mypage_lotto_path, class: 'lotto_enroll_btn'
+    = link_to (image_tag 'btn/later_btn.png'), buzz_share_path, class: 'lotto_later_btn'
+
+:javascript
+  $(function(){ 
+    lotto_popup();
+
+    $(".popup.lotto_enroll .lotto_enroll_btn").click(function(){
+      //clear field
+      set_field([]);
+      selected_balls([]);
+      balls = [];
+
+      //send to api
+    });
+  });

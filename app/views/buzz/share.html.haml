@@ -1,0 +1,74 @@
+- meta og: { type:"image",
+  url: "https://buzlotto.herokuapp.com/user=" + "lalala",
+  title: "버즈로또",
+  description: '이번주 1억원의 주인공은 바로 당신!',
+  'image:width' => '1200',
+  'image:height' => '630',
+  image: "http://buzlotto.herokuapp.com/assets/share_img.jpg" }
+
+%row.share_heading
+  이번 주
+  %span.highlight.green
+    1억원
+  의 주인공은 바로 당신!
+
+%row.share_img
+  = image_tag 'share_img.jpg'
+
+%row.share_txt
+  친구에게 공유해서 추가로 
+  %span.highlight.green 
+    공짜 로또
+  에 참여하세요.
+  %br
+  공유를 통해 회원가입한 
+  %span.highlight.green
+    유저 X 3
+  의 로또권을 드립니다.
+
+%row.share_btn
+  = link_to (image_tag "btn_sharebox_facebook.png"), '#', class: 'fb-share-btn'
+  = link_to (image_tag "btn_sharebox_kakao.png"), 'javascript:;', id: 'kakao-share-btn', target: :blank
+
+= render 'campaign'
+= render 'app_campaign'
+= render 'winning_number'
+= render 'buzlotto_fb'
+= render 'footer'
+
+:javascript
+  Kakao.init('9f92b930dd2ece90f59baa6b34183b1c');
+  Kakao.Link.createTalkLinkButton({
+        container: '#kakao-share-btn',
+        label: "버즈로또 - 이번주 1억원의 주인공은 바로 당신!",
+        image: {
+          src: "http://buzlotto.herokuapp.com/assets/share_img.jpg",
+          width: '1200',
+          height: '630'
+        },
+        webButton: {
+          text: '웹으로 가기',
+          url: "http://buzlotto.herokuapp.com/"
+        } 
+        //execParams:{iphone:{name:'username'}, android:{name:'username'}}
+      });
+
+  /*window.fbAsyncInit = function() {
+      FB.init({
+        appId      : '1268848616468007',
+        xfbml      : true,
+        version    : 'v2.7'
+      });
+    }; */
+
+    $(function(){
+      $(".fb-share-btn").on('click', function(){
+       FB.ui({
+          method: 'share',
+          display: 'popup',
+          href: 'https://buzlotto.herokuapp.com',
+        }, function(response){});
+      });
+    });
+
+

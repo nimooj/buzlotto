@@ -1,0 +1,191 @@
+.container {
+  .campaign, .app_campaign {
+    .campaign_heading {
+      @media screen and (max-device-width: 420px) {
+        font-size: 1.2em;
+        padding-left: .3em;
+        margin-bottom: .8em;
+      }
+      @media screen and (max-device-width: 360px) {
+        margin-bottom: .5em;
+      }
+      font-weight: lighter;
+      font-size: $heading-font-size;
+      text-align: left;
+      margin-left: 10px;
+      margin-bottom: 20px;
+    }   
+    .available_campaign_list {
+      .thumbnail {
+        img {
+          width: 100%;
+          height: 100%;
+        }
+        @media screen and (max-device-width: 420px) {
+          width: 3em;
+          height: 3em;
+        }
+        width: 130px;
+        height: 130px;
+        float: left;
+      }
+      .title_type {
+        .title {
+          @media screen and (max-device-width: 420px) {
+            font-size: .9em;
+            margin-bottom: 0em;
+          }
+          @media screen and (max-device-width: 360px) {
+            margin-top: -.1em;
+          }
+          @media screen and (max-device-width: 320px) {
+            margin-bottom: .1em;
+          }
+          margin-bottom: 25px;
+          font-weight: bold;
+        }
+        .type {
+          img {
+            @media screen and (max-device-width: 420px) {
+              margin-top: .2em;
+              height: 1.3em;
+            }
+            @media screen and (max-device-width: 360px) {
+              margin-top: .5em;
+            }
+            @media screen and (max-device-width: 320px) {
+              margin-top: .3em;
+            }
+          }
+          @media screen and (max-device-width: 360px) {
+            margin-top: -.1em;
+          }
+          display: inline-block;
+        }
+        @media screen and (max-device-width: 420px) {
+          margin-left: 1em;
+          width: 50%;
+        }
+        @media screen and (max-device-width: 320px) {
+          margin-bottom: .1em;
+        }
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+        margin-left: 39px; 
+        display: inline-block;
+      }
+      .coupon {
+        img {
+          @media screen and (max-device-width: 420px) {
+            margin-top: 0em;
+            height: 1.5em;
+          }
+          @media screen and (max-device-width: 320px) {
+            height: 1.5em;
+          }
+          vertical-align: middle;
+        }
+        .coupon_count {
+          @media screen and (max-device-width: 420px) {
+            margin-top: 0em;
+            margin-left: .5em;
+          }
+          vertical-align: middle;
+          display: inline-block;
+          font-weight: bold;
+          margin-left: 15px;
+        }
+        @media screen and (max-device-width: 420px) {
+          margin-top: .8em;
+        }
+        float: right;   
+        display: inline-block;
+        margin-top: 40px;
+      }
+      @extend .bg-container;
+      @media screen and (max-device-width: 420px) {
+        margin-bottom: 1px;
+        font-size: 1.3em;
+        height: 5em;
+        padding: .9em 1.3em 1em 1em;
+      }
+      @media screen and (max-device-width: 360px) {
+        font-size: 1.1em;
+        padding: .9em 1em .8em .8em;
+      }
+      font-size: $heading-font-size;
+      padding: 28px 33px 28px 28px;
+      border-bottom: $base-border;
+      height: 179px;
+      background-color: white;
+    }
+    @media screen and (max-device-width: 420px) {
+      margin-top: 3em;
+    }
+    display: inline-block;
+    margin-top: 119px;
+    text-align: left;
+  }
+
+  .app_campaign {
+    .app_campaign_heading {
+      .heading_txt {
+        @media screen and (max-device-width: 420px) {
+          margin-bottom: 1em;
+        }
+        margin-bottom: 49px;
+      }
+      .heading_btn {
+        img {
+          @media screen and (max-device-width: 420px) {
+            height: 1.2em;
+          }
+          vertical-align: middle;
+        }
+        .btn_txt {
+          @media screen and (max-device-width: 420px) {
+            margin-left: .5em;
+          }
+          margin-left: 15px;
+          vertical-align: middle;
+          font-weight: normal;
+          font-family: Sans-serif;
+          display: inline-block;
+        }
+        @media screen and (max-device-width: 420px) {
+          width: 13em;
+          height: 3em;
+          padding: 0;
+        }
+        @media screen and (max-device-width: 360px) {
+          padding: .5em 1em;
+        }
+        background-color: $green;   
+        height: 103px;
+        width: 450px;
+      }
+      @media screen and (max-device-width: 420px) {
+        font-size: 1.5em;
+        top: 3em;
+      }
+      @media screen and (max-device-width: 360px) {
+        font-size: 1.2em;
+      }
+      text-align: center; 
+      font-size: $heading-font-size;
+      position: absolute;
+      top: 124px;
+      left: 50%;
+      -webkit-transform: translateX(-50%);
+      -moz-transform: translateX(-50%);
+      transform: translateX(-50%);
+      z-index: 1;
+    }
+    .available_campaign_list {
+      -webkit-filter: blur(7px);
+      filter: blur(7px);
+    }     
+    position: relative;
+  }
+}

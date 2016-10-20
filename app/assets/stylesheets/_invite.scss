@@ -1,0 +1,45 @@
+.container {
+  .invite {
+    .text {
+      @media screen and (max-device-width: 420px) {
+        font-size: .9em;
+      }
+    }
+    .invite_btn {
+      img {
+        @media screen and (max-device-width: 420px) {
+          width: 100%;
+          height: auto;
+        }
+        margin-right: 10px;
+        vertical-align: middle;
+      }
+      @media screen and (max-device-width: 420px) {
+        margin-top: .8em;
+        width: 8em;
+        font-size: .9em;
+      }
+      margin-top: 21px;
+      width: em(291, 36);
+      height: em(91, 36);
+      display: inline-block;
+    }
+    @extend .sm-container;
+    @media screen and (max-device-width: 420px) {
+      height: 7.5em;
+      font-size: 1.4em;
+      padding: .8em;
+      margin-top: .25em;
+    }
+    @media screen and (max-device-width: 320px) {
+      font-size: 1.2em;
+      padding: .8em;
+    }
+    margin-top: 14px;
+    border: $base-border;
+    background-color: white;
+    font-size: 36px;
+    padding: 34px;
+    text-align: center;
+  }
+}

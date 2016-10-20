@@ -1,0 +1,35 @@
+%row.win_result
+  = render 'none'
+
+%row.win_confirm_user
+  %ul.heading
+    %li
+      본인의 개인정보를 확인해주세요.
+  .info
+    \- 휴대폰번호 : 
+    %span.highlight.blue
+      010-2493-5661
+    %br
+    \- 은행, 계좌번호 : 
+    %span.highlight.blue
+      = link_to '계좌번호 등록하기', mypage_account_path
+
+%row.win_confirm_paper
+  %ul.heading
+    %li
+      경품을 받기 위해서 아래 서류가 필요합니다.
+  .info
+    \- 성인 :  통장사본, 주민등록등본
+    %br
+    \- 미성년자 :  법적 대리인 통장사본, 가족관계증명서
+
+%row.win_info
+  %ul
+    %li
+      당첨자는 차주에 경품을 지급합니다.
+    %li
+      토요일 20시 이후 등록한 번호는 차주에 등록됩니다.
+
+%row.win_btn
+  %button.check_participation
+    = link_to '버즈로또 참여기록 확인하기', mypage_lotto_history_path

@@ -1,0 +1,152 @@
+.container {
+  .account_heading {
+    @media screen and (max-device-width: 420px) {
+      font-size: 1.7em;
+      margin-top: 1em;
+      margin-bottom: 3em;
+    }
+    @media screen and (max-device-width: 420px) {
+      margin-bottom: 1.5em;
+    }
+    font-size: 40px;
+    margin: 64px auto 148px auto;
+    display: block;
+  }
+  .account_input {
+    .select-box {
+      img {
+        @media screen and (max-device-width: 420px) {
+          width: 1em;
+          right: 1em;
+        }
+        position: absolute;
+        top: 50%;
+        right: 31px;
+        -webkit-transform: translateY(-115%);
+        -moz-transform: translateY(-115%);
+        transform: translateY(-115%);
+      }
+      input.select {
+        @media screen and (max-device-width: 420px) {
+          width: 7em;
+          height: 3em;
+          font-size: 1.3em;
+          padding: .7em .5em;
+          border: 1px solid #d9d9d9;
+          margin-right: .15em;
+        }
+        @media screen and (max-device-width: 320px) {
+          width: 6em;
+        }
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+
+        -webkit-box-shadow: none;
+        -ms-box-shadow: none;
+        -moz-box-shadow: none;
+        box-shadow: none;
+        width: 260px;
+        height: 130px;
+        border: 3px solid #d9d9d9;
+        border-radius: 0;
+        font-size: 38px;
+        font-family: Sans-serif;
+        display: inline-block;
+        margin-right: 11px;
+        padding: 36px 32px;
+        background-color: transparent;
+        cursor: default;
+      }
+      position: relative;
+      display: inline-block;
+    }
+    .account_number {
+      @media screen and (max-device-width: 420px) {
+        width: 12.7em;
+        height: 3em;
+        font-size: 1.3em;
+        padding: .7em .5em;
+        border: 1px solid #d9d9d9;
+      }
+      @media screen and (max-device-width: 320px) {
+        width: 10.7em;
+      }
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+
+      -webkit-box-shadow: none;
+      -moz-box-shadow: none;
+      box-shadow: none;
+
+      background-color: transparent;
+      height: 130px;
+      width: 600px;
+      font-size: 38px;
+      font-family: Sans-serif;
+      border: 3px solid #d9d9d9;
+      border-radius: 0px;
+      display: inline-block;
+      padding: 38px;
+    }
+    @media screen and (max-device-width: 420px) {
+      margin-bottom: .8em;
+    } 
+  }
+
+  .account_btn {
+    button {
+      @media screen and (max-device-width: 420px) {
+        font-size: 1.5em;
+        width: 17.5em;
+        height: 3em;
+      } 
+      @media screen and (max-device-width: 320px) {
+        width: 14.9em;
+        height: 2.8em;
+      }
+      width: 820px;
+      height: 120px;
+      background-color: $green;
+      color: white;
+      font-size: 40px;
+      font-weight: normal;
+    }
+  }
+
+  .account_info {
+    ul {
+      li {
+        @media screen and (max-device-width: 420px) {
+          margin-bottom: .6em;
+        }
+        @media screen and (max-device-width: 320px) {
+          margin-bottom: .3em;
+        }
+        margin-bottom: 26px;
+      }
+      @media screen and (max-device-width: 420px) {
+        font-size: .5em;
+        width: 100%;   
+        padding: 1em 2em;
+      }
+      @media screen and (max-device-width: 320px) {
+        font-size: .35em;
+        padding: 1em 3em;
+      }
+      list-style-type: disc;
+      list-style-position: outside;   
+      width: 820px;
+      @include shift(.25);
+    }
+    @media screen and (max-device-width: 420px) {
+      margin-top: 1em;
+    }
+    text-align: left;   
+    font-size: 28px;
+    color: #666666;
+    margin-top: 76px;
+    margin-bottom: 70px;
+  }
+}

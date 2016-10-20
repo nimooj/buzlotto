@@ -1,0 +1,28 @@
+%row.log_heading
+  로그인
+
+%row.log_insert
+  .id.heading
+    아이디
+  .id.insert
+    = text_field_tag :username, params[:username], class: 'username'
+  .pw.heading
+    비밀번호 (6자 이상)
+  .pw.insert
+    = password_field_tag :password, params[:password], class: 'password'
+%row.log_btn
+  %button
+    로그인
+
+%row.log_footer
+  = link_to '회원가입하기', sign_step_path
+  = link_to '비밀번호 찾기', sign_find_pw_path
+
+:javascript 
+  $(function(){
+    $(".log_btn").click(function(){
+      Cookies.set('c_user', '버즈로또', {expires: 180});
+      window.location.replace('/');
+      //login();
+    })
+  });

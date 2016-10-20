@@ -1,0 +1,47 @@
+//은행 선택 팝업
+.container {
+  .popup.account_popup {
+    .popup_heading {
+      @media screen and (max-device-width: 420px) {
+        font-size: 1.8em;
+        margin: 1em auto 1.3em auto;
+      }
+      @media screen and (max-device-width: 360px) {
+        font-size: 1.5em;
+        margin: 1em auto 1.3em auto;
+      }
+      font-size: 45px;
+      font-weight: bold;
+      color: #333333;
+      margin: 47px auto 126px auto;
+    }
+    .popup_txt {
+      span {
+        @media screen and (max-device-width: 420px) {
+          font-size: .8em;
+          width: 4.5em; 
+          height: 2.5em;
+        }
+        @media screen and (max-device-width: 360px) {
+          font-size: .6em;
+          width: 5em; 
+          height: 2em;
+        }
+        width: 270px;
+        height: 120px;
+        font-size: 44px;
+        font-weight: normal;   
+      }
+    }
+    @media screen and (max-device-width: 420px) {
+      width: 28em;
+      height: 35em;
+    }
+    @media screen and (max-device-width: 360px) {
+      width: 24em;
+      height: 28em;
+    }
+    width: 836px;
+    height: 1030px;
+  }
+}

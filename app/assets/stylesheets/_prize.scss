@@ -1,0 +1,15 @@
+.container {
+  .prize {
+    @extend .sm-container;
+    @media screen and (max-device-width: 420px) {
+      margin-top: .3em;
+    }
+    margin-top: 24px;
+  }
+  .checkout_prize {
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
+}

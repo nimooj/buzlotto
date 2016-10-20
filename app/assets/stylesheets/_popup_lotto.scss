@@ -1,0 +1,91 @@
+//로또 등록 팝업
+.container {
+  .popup.lotto_enroll {
+    .popup_txt {
+      @media screen and (max-device-width: 420px) {
+        font-size: 1.6em;
+        margin: 2em 0 1em 0;
+        padding: .5em;
+      }
+      @media screen and (max-device-width: 360px) {
+        font-size: 1.4em;
+        margin: 1.5em 0 .4em 0;
+        padding: .5em;
+      }
+      @media screen and (max-device-width: 360px) {
+        font-size: 1.4em;
+        margin: 1.5em 0 .4em 0;
+        padding: .5em;
+      }
+      margin-top: 106px;
+      margin-bottom: 59px;
+      font-size: 42px;
+      vertical-align: middle;
+    }
+    .popup_heading {
+      img {
+        @media screen and (max-device-width: 420px) {
+          height: 1.4em;   
+        }
+        @media screen and (max-device-width: 360px) {
+          margin-top: .1em;
+          height: 1.3em;   
+        }
+        height: 65px;
+        width: auto;
+        vertical-align: top;
+      }
+      @media screen and (max-device-width: 420px) {
+        font-size: 1.7em;   
+        margin-bottom: 1em;
+      }
+      @media screen and (max-device-width: 360px) {
+        font-size: 1.5em;   
+        margin-bottom: .6em;
+      }
+      font-size: 50px;
+      margin-bottom: 56px;
+    }
+    .popup_btn {
+      .lotto_enroll_btn img {
+        @media screen and (max-device-width: 420px) {
+          width: auto;
+          height: 3.5em;
+        }
+        @media screen and (max-device-width: 360px) {
+          width: auto;
+          height: 3em;
+        }
+        width: 468px; 
+        height: 105px;
+      }
+      .lotto_later_btn img {
+        @media screen and (max-device-width: 420px) {
+          //width: 9.5em;
+          height: 3.5em;
+          width: auto;
+        }
+        @media screen and (max-device-width: 360px) {
+          height: 3em;
+          width: auto;
+        }
+        width: 271px;
+        height: 105px;
+      }
+      @media screen and (max-device-width: 420px) {
+        margin-bottom: 0;
+      }
+      margin-bottom: 68px;
+    }
+    @media screen and (max-device-width: 420px) {
+      width: 28em;
+      height: 21.5em;
+    }
+    @media screen and (max-device-width: 360px) {
+      width: 24em;
+      height: 16em;
+    }
+    width: 836px;
+    height: 589px;
+  }
+}

@@ -1,0 +1,114 @@
+.container {
+  .log_heading {
+    @media screen and (max-device-width: 420px) {
+      font-size: 2em;
+      margin-top: 1em;
+      margin-bottom: 2em;
+    }
+    @media screen and (max-device-width: 320px) {
+      font-size: 1.8em;
+      margin-top: 1em;
+      margin-bottom: 2em;
+    }
+    @extend .bg-container;
+    margin-top: 146px;
+    font-size: 80px;
+    color: $green;
+  }
+
+  .log_insert {
+    .heading {
+      @extend .bg-container;
+      @media screen and (max-device-width: 420px) {
+        font-size: 1.4em;
+        margin-bottom: .5em;
+        margin-left: .4em;
+      }
+      @media screen and (max-device-width: 360px) {
+        font-size: 1.2em;
+      }
+      text-align: left;
+      font-size: 30px;
+      color: #333333;
+      margin-bottom: 70px;
+    }
+    .insert {
+      input {
+        @media screen and (max-device-width: 420px) {
+          width: 17em;
+          font-size: 1.4em;
+          padding-bottom: .8em;
+          margin-bottom: 1em;
+          border-bottom: 1px solid #cecece;
+        }
+        @media screen and (max-device-width: 320px) {
+          width: 17em;
+          font-size: 1.2em;
+          margin-bottom: 1em;
+        }
+        width: 822px;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        font-size: 40px;
+        font-family: Sans-serif;
+        border: none;
+        border-bottom: 2px solid #cecece;
+        background-color: transparent;
+        border-radius: 0;
+        -webkit-box-shadow: none;
+        -moz-box-shadow: none;
+        box-shadow: none;
+        margin-bottom: 70px;
+      }
+      input:focus {
+        @media screen and (max-device-width: 420px) {
+          border-bottom: 2px solid $green;
+        }
+        border-bottom: 4px solid $green;
+      }
+    }
+  }
+  .log_btn {
+    button {
+      @media screen and (max-device-width: 420px) {
+        font-size: 1.5em;
+        width: 16em;
+        height: 3em;
+        margin-top: 1em;
+      }
+      @media screen and (max-device-width: 320px) {
+        font-size: 1.3em;
+        width: 16em;
+        height: 3em;
+      }
+      width: 820px;
+      height: 112px;
+      color: white;
+      background-color: $green;
+      font-size: 40px;
+      font-weight: normal;
+    }
+    @media screen and (max-device-width: 420px) {
+      margin-bottom: 3em;
+    }
+    margin-bottom: 80px;
+  }
+  .log_footer {
+    a {
+      @media screen and (max-device-width: 420px) {
+        font-size: 1.4em;
+        margin: 0 1.2em;
+      }
+      @media screen and (max-device-width: 360px) {
+        font-size: 1.3em;
+        margin: 0 1.5em;
+      }
+      display: inline-block;
+      margin: 0 61px;
+      color: $green;
+      font-size: 32.7px;
+      text-decoration: underline;
+    }
+  }
+}

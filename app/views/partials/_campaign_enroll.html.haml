@@ -1,0 +1,39 @@
+= render 'partials/black_overlay'
+.popup.campaign_enroll
+  .popup_select
+    = image_tag "btn_close.png", class: 'close_btn'
+  -# 캠페인 화면 삽입용
+  .popup_campaign 
+  .popup_heading
+    버즈로또권 적립방법
+  .popup_txt
+    앱을 설치하시면 
+    %span.highlight.green
+      로또권
+    이 지급됩니다.
+    %br
+    캠페인 참여 완료 후 로또 등록이 가능합니다!
+    %br
+    %br
+    .info
+      \- 로또권은 알림 없이 자동 적립됨
+      %br
+      \- 이미 설치한 앱은 적립 안됨
+      %br
+      \- 로또권 지급은 최대 10분까지 늦을 수 있음
+  .popup_btn
+    = link_to (image_tag "btn/camp_campenroll.png", class: 'btn_mid'), 'buzlotto://AppChecker?ad_id=231&user_id=1&package_name=com.example.app'
+    = link_to (image_tag "btn/btn_cam.png", class: 'btn_l go_campaign'), '#'
+    = link_to (image_tag "btn/camp_installcheck.png", class: 'btn_l install_check'), 'buzlotto://AppChecker?ad_id=231&user_id=1&check_package_installed=com.example.app'
+    = link_to (image_tag "btn/camp_lotto_enroll.png", class: 'btn_r'), mypage_lotto_path
+
+:javascript
+  $(function(){
+  $(".btn_r").click(function(){
+  console.log("right_click");
+    $(".filter").css('display', 'none');
+    $(".popup").css('display', 'none');
+  });
+    //로또권 popup_txt에서 장수 highlight wrapping
+    $(".popup_txt span.highlight").append("2장");
+  });

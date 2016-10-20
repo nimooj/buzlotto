@@ -1,0 +1,60 @@
+body {
+  @media screen and (max-device-width: 420px) {
+    width: 100%;
+  }
+  @include outer-container;
+  margin-top: 0;
+
+  .nav, .container {
+    @include span-columns(12);
+  }
+  .nav {
+    @media screen and (max-device-width: 420px) {
+      margin-right: 0;
+    }
+  }
+  .container {
+    @media screen and (max-device-width: 420px) {
+      margin-right: 0;
+      top: 3.8em;
+    }
+    row {
+      display: inline-block;   
+    }
+    position: absolute;
+    top: 110px;
+  }
+
+  position: relative;
+  text-align: center;
+  background-color: $background-color;
+  font-family: "nanumbarungothic", "AppleGothic ", Sans-serif, Arial, Helvetica;
+}
+
+.sm-container {
+  @include span-columns(11.5);
+  @include shift(.25);
+  display: block;
+}
+
+.bg-container {
+  @include span-columns(12);
+  display: block;
+}
+
+.highlight {
+  display: inline-block;
+  font-weight: bold;
+}
+
+.highlight.yellow {
+  color: $yellow;
+}
+
+.highlight.green {
+  color: $green;
+}
+.highlight.blue {
+  font-weight: normal;
+  color: #3c81ea;
+}

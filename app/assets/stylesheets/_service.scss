@@ -1,0 +1,46 @@
+.container {
+  .service_heading {
+    @media screen and (max-device-width: 420px) {
+      margin-top: 2em;
+      font-size: 1.5em;
+    }
+    margin-top: 70px;
+    font-size: 44px;
+    color: #333333;
+  }
+  .service_content {
+    .heading {
+      @media screen and (max-device-width: 420px) {
+        font-size: 1em;
+        margin-bottom: 1em;
+      }
+      font-weight: bold;
+      margin-bottom: 40px;
+    }
+    .comment {
+      color: #7a7a7a;
+    }
+    .sub-comment {
+      @media screen and (max-device-width: 420px) {
+        margin-bottom: 1em;
+      }
+      margin-bottom: 67px;
+    }
+    .subsub-comment {
+      @media screen and (max-device-width: 420px) {
+        margin-bottom: 1em;
+      }
+      margin-left: 1em;
+      margin-bottom: 40px;
+    }
+    @media screen and (max-device-width: 420px) {
+      font-size: 1.2em;
+      margin: 1.3em 1em;
+    }
+    margin: auto 50px;
+    font-size: 36px;
+    font-family: Sans-serif;
+    margin-top: 100px;
+    text-align: left;
+  }
+}

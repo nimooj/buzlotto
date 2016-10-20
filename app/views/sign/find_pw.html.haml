@@ -1,0 +1,56 @@
+%row.find_pw_heading
+  비밀번호 찾기
+
+%row.find_pw_phonenumber
+  = text_field_tag :phone, params[:phone], placeholder: "휴대폰 번호", class:'phonenumber'
+
+%row.find_pw_phonenumber_btn
+  %button
+    인증번호 받기
+
+%row.find_pw_insert_cnum
+  .heading
+    인증번호
+  = text_field_tag :cnum, params[:cnum], pattern: "[0-9]{4}", class: 'cnum'
+  .content
+    SMS로 수신된 인증번호를 입력하세요. 
+    %br
+    = link_to '인증번호 재전송'
+
+%row.find_pw_confirm_btn
+  %button{disabeld: true}
+    인증 완료 
+
+:javascript
+  $(function(){
+     var bc = 0;
+     var sc = 0;
+     var vc = 0;
+
+    $(".find_pw_phonenumber_btn").click(function(){
+      send_sms();
+      bc = 1;
+      validate_find_pw(sc, bc, vc);
+    });
+
+    $("input.phonenumber").keyup(function(){
+      sc = validate_phonenum();
+      validate_find_pw(sc, bc, vc);
+    });
+    
+    $("input.cnum").keyup(function(){
+      vc = 1;
+      validate_find_pw(sc, bc, vc);
+    });
+
+    $(".find_pw_confirm_btn button").click(function(){
+      var is_valid = validate_vnum();
+      if (is_valid == 1) {
+        //change_pw()로 api update 후 redirect
+        window.location.replace("/");
+      }
+      else {
+        alert("다시 시도해주세요.");
+      }
+    });
+  });

@@ -1,0 +1,43 @@
+%row.mypage_lotto_history_heading
+  참여 기록 확인하기
+
+%row.mypage_lotto_history_list
+  - (0...30).each do |f|
+    .history_box
+      .weekly_winning_number
+        .heading
+          %span.highlight.green
+            801회
+          차 버즈로또 당첨번호
+          %span.date
+            (07.05)
+        .content.balls
+          - (1...7).each do |d|
+            %div{class: "lotto_ball ball_#{d}"}
+              = image_tag "q_lotto.png"
+          = image_tag "ic_plus.png", class: "ic_plus"
+          = image_tag "q_lotto.png", class: "bonus_lotto_ball"
+          .bonus_title
+            보너스
+
+      - if f%2 == 0
+        .my_lotto_number
+          .heading
+            나의 등록 번호
+          .content
+            - (1...7).each do |d|
+              %div{class: "lotto_number number_#{d}"}
+                = d
+          .content
+            - (1...7).each do |d|
+              %div{class: "lotto_number number_#{d}"}
+                = d
+
+%row.mypage_lotto_history_btn
+  %button.load_more
+    더 보기
+
+:javascript 
+  $(function(){
+    lotto_history();
+  });

@@ -1,0 +1,192 @@
+.container {
+  .mypage_lotto_history_heading {
+    @media screen and (max-device-width: 420px) {
+      font-size: 1.5em;
+      margin-top: 1em;
+      margin-bottom: 1em;
+    }
+    font-size: 44px;
+    font-weight: bold;
+    color: #333333;
+    display:block;
+    margin-top: 68px;
+    margin-bottom: 48px;
+  }
+
+  .mypage_lotto_history_list {
+    .history_box {
+      .heading {
+        span.highlight.green {
+          font-weight: normal;
+        }
+        span.date {
+          color: #666666;
+        }
+        @media screen and (max-device-width: 420px) {
+          font-size: 1.4em;   
+          margin-top: 0em;
+        }
+        @media screen and (max-device-width: 360px) { font-size: 1.2em;   
+          margin-top: 0em;
+        }
+        @media screen and (max-device-width: 320px) {
+          font-size: 1.1em;   
+          margin-top: 0em;
+        }
+        font-size: 37px;
+        margin-top: 60px;
+      }
+      .content.balls {
+        .lotto_ball {
+          img {
+            @media screen and (max-device-width: 420px) {
+              width: 3em;   
+              height: 3em;
+            }
+            @media screen and (max-device-width: 320px) {
+              width: 2.5em;   
+              height: 2.5em;
+            }
+            width: 81px;
+            height: 81px;
+            vertical-align: middle;
+          }
+          @media screen and (max-device-width: 420px) {
+            margin-right: .1em;
+            margin-left: .1em; 
+          }
+          margin-right: 11.5px;
+          margin-left: 11.5px;
+          display: inline-block;
+        }
+        .ic_plus {
+          @media screen and (max-device-width: 420px) {
+            width: 1em;
+            margin-left: .1em;
+            margin-right: .1em;   
+          }
+          margin-left: 20.5px;
+          margin-right: 28px;   
+          vertical-align: middle;
+        }
+        .bonus_lotto_ball {
+          @media screen and (max-device-width: 420px) {
+            width: 3em;
+            height: 3em;
+          }
+          @media screen and (max-device-width: 320px) {
+            width: 2.5em;
+            height: 2.5em;
+          }
+          width: 81px;
+          height: 81px;
+          vertical-align: middle;
+        }
+        .bonus_title {
+          @media screen and (max-device-width: 420px) {
+            font-size: .8em;
+            margin-right: 1.5em;
+            margin-top: .3em;
+          }
+          @media screen and (max-device-width: 360px) {
+            margin-right: .9em;
+          }
+          @media screen and (max-device-width: 320px) {
+            margin-right: .8em;
+          }
+          float: right;
+          margin-top: 10px;
+          margin-right: 38px;
+          font-size: 23px;
+          color: #666666;
+        }
+        @media screen and (max-device-width: 420px) {
+          margin-top: 1em;
+          margin-bottom: .5em;
+          padding: 0 .5em;
+        }
+        display: block;
+        margin-top: 48px;
+        margin-bottom: 92px;
+      }
+      .my_lotto_number {
+        .heading {
+          @media screen and (max-device-width: 420px) {
+            margin-bottom: .6em;
+          }
+          margin-bottom: 53px;   
+        }
+        .content {
+          .lotto_number {
+            @media screen and (max-device-width: 420px) {
+              margin-left: .7em;
+              margin-right: .7em;
+            }
+            margin-left: 22.5px;
+            margin-right: 22.5px;
+            display: inline-block;
+            text-decoration: underline;
+          }
+          @media screen and (max-device-width: 420px) {
+            font-size: 1.6em;   
+            margin-bottom: .3em;
+          }
+          @media screen and (max-device-width: 320px) {
+            font-size: 1.4em;
+            margin-bottom: .7em;
+          }
+          margin-bottom: 40px;
+          font-size: 54px;
+          color: #666666;
+        }
+        @media screen and (max-device-width: 420px) {
+          margin-top: 4em;
+          margin-bottom: .5em;
+        }
+        margin-top: 33px;
+        margin-bottom: 33px;
+      }
+      @media screen and (max-device-width: 420px) {
+        margin-left: 2%;
+        margin-bottom: 2.5%;
+        width: 96%;
+        padding: 2em 0 2.3em 0;
+      }
+      @media screen and (max-device-width: 320px) {
+        padding: 1em 0 1.3em 0;
+      }
+      width: 876px;
+      margin: 0 auto 22px auto;
+      border: 1px solid #e0e2e3;   
+    }
+    width: 100%;
+  }
+
+  .mypage_lotto_history_btn {
+    button {
+      @media screen and (max-device-width: 420px) {
+        width: 18.8em;
+        height: 3em; 
+      }
+      @media screen and (max-device-width: 360px) {
+        width: 22.6em;
+        height: 3.3em; 
+        font-size: .8em;
+      }
+      @media screen and (max-device-width: 320px) {
+        width: 15em;
+        height: 3em; 
+      }
+      width: 876px;
+      height: 112px;   
+      background-color: #e1e1e1;
+      color: #666666;
+    }
+    @media screen and (max-device-width: 420px) {
+      font-size: 1.5em;
+    }
+    margin-bottom: 20px;
+    font-size: 36px;
+    text-align: center;
+  }
+}
