@@ -12,7 +12,7 @@ function load_history() {
   });
 }
 
-function lotto_history() {
+function lotto_load_more_history() {
   var btn_click_count = 0;
   var num_of_child = $(".mypage_lotto_history_list").children().length;
 

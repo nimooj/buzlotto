@@ -1,9 +1,6 @@
 var balls = [];
 
 function lotto_select(l){
-  console.log("lotto select");
-  console.log(balls);
-
   state = l.split(' ')[1].split('_')[1];
   lotto_ball_num = l.split(' ')[1].split('_')[2];
 

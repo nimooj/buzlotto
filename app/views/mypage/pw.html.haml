@@ -1,24 +1,19 @@
-- if flash[:notice]
-  .flash
-    = flash[:notice]
+%row.pw_heading
+  비밀번호 변경
 
-= form_tag mypage_edit_path do
-  %row.pw_heading
-    비밀번호 변경
+%row.pw_current
+  .heading
+    현재 비밀번호
+  = password_field_tag :pw_current, params[:pw_current], class: 'pw_insert', placeholder: '영문, 숫자 포함 6자리 이상 입력해주세요.', minlenght: 6
 
-  %row.pw_current
-    .heading
-      현재 비밀번호
-    = password_field_tag :pw_current, params[:pw_current], class: 'pw_insert', placeholder: '영문, 숫자 포함 6자리 이상 입력해주세요.', minlenght: 6
+%row.pw_new
+  .heading
+    새 비밀번호
+  = password_field_tag :pw_new_insert, params[:pw_new_insert], class: 'pw_insert pw_new_insert', placeholder: '영문, 숫자 포함 6자리 이상 입력해주세요.', minlenght: 6
+  = password_field_tag :pw_confirm, params[:pw_confirm], class: 'pw_insert pw_confirm', placeholder: '새 비밀번호를 다시 입력해주세요.', minlenght: 6
 
-  %row.pw_new
-    .heading
-      새 비밀번호
-    = password_field_tag :pw_new_insert, params[:pw_new_insert], class: 'pw_insert pw_new_insert', placeholder: '영문, 숫자 포함 6자리 이상 입력해주세요.', minlenght: 6
-    = password_field_tag :pw_confirm, params[:pw_confirm], class: 'pw_insert pw_confirm', placeholder: '새 비밀번호를 다시 입력해주세요.', minlenght: 6
-
-    %button{class: "pw_change_btn", disabled: true}
-      변경하기
+  %button{class: "pw_change_btn", disabled: true}
+    변경하기
 
 :javascript 
   $(function(){
@@ -33,4 +28,7 @@
         changed_pw_validate() ;
       }
     });
+    $(".pw_new button").click(function(){
+      user_pw_update();
+    })
   });

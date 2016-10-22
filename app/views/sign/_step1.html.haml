@@ -9,8 +9,6 @@
       = text_field_tag "id", params[:id], placeholder: '6자 ~ 20자 입력하세요.', class: 'id_insert', minlength: 6, maxlenght: 20
       %button.id_confirm{disabled: true}
         = image_tag "btn/name_check_invalid.png"
-        -#= image_tag "ic_check_grey.png", class: 'ic_check_grey'
-        -#중복 확인
 
   %row.step_pw
     .heading
@@ -45,14 +43,7 @@
     validate_username();
 
     $("button.id_confirm").click(function(){
-      //n = id_check();
-      n = 1;
-      if(n) {
-        alert("사용 가능한 아이디입니다.");
-      }
-      else {
-        alert("중복된 아이디입니다. 다시 시도하세요.");
-      }
+      n = id_check();
       validate_next1(n, checked, p, pc);
     });
 

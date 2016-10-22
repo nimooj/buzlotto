@@ -29,44 +29,62 @@ function guid() {
 function id_check() {
   var id = $("input.id_insert").val();
   var user_data = {'username': id};
+  var result = 0;
 
-  var url = 'https://api.buzlotto.com/api/accounts/check_id_duplicate';
+  //var url = 'https://api.buzlotto.com/api/accounts/check_id_duplicate';
+  var url = 'http://127.0.0.1:8000/api/accounts/check_id_duplicate';
   var method = 'GET';
 
-  var xhr = createCORSRequest(method, url);
+  $.ajax({
+    method: method,
+    url: url, 
+    data: user_data,
+    async: false,
+    statusCode: {
+      200: function() {
+        alert("사용가능한 아이디입니다.");
+        result = 1;
+      },
+      400: function() {
+        alert("중복된 아이디입니다. 다시 시도하세요.");
+        result = 0;
+      }
+    }
+  });
 
-  xhr.send(JSON.stringify(user_data));
-  return true;
-  //xhr.onload = function() {
-    //console.log("success");
-    //return 1;
-  //}
-
-  //xhr.onerror = function() {
-    //console.log("fail");
-    //return 0;
-  //}
+  return result;
 }
 
-
-function validate_phone() {
+function validate_vnum() {
   var num = $("input.cnum").val();
   var sms_data = {'auth_number': num};
+  var result = 0;
 
-  var url = 'https://api.buzlotto.com/api/sms/auth';
+  var url = 'http://localhost:8000/api/sms/auth';
   var method = 'POST';
-  var xhr = createCORSRequest(method, url);
+  $.ajax({
+    method: method,
+    url: url,
+    data: sms_data,
+    async: false
+  })
+  .done(function(data){
+    var status = data["is_successful"];
+    if(!status) {
+      var message = data["message"];
+      if (message == "FAILED_TO_MATCH") {
+        alert("잘못된 인증번호입니다.");
+      }
+      else if (message = "RECORD_NOT_FOUND") {
+        alert("인증번호 전송 기록이 존재하지 않습니다. 다시 시도하세요.")
+      }
+      else if (message == "AUTH_TIMED_OUT") {
+        alert("인증 가능 시간을 초과하였습니다. 다시 시도하세요.");
+      }
+    }
+  });
 
-  xhr.send(JSON.stringify(sms_data));
-  xhr.onload = function() {
-    console.log("success");
-    return 1;
-  }
-
-  xhr.onerror = function() {
-    console.log("fail");
-    return 0;
-  }
+  return result;
 }
 
 function signup_account() {
@@ -109,7 +127,22 @@ function signup_account() {
     }
 
   });
+}
 
+function getCookie(name) {
+	var cookieValue = null;
+	if (document.cookie && document.cookie !== '') {
+		var cookies = document.cookie.split(';');
+		for (var i = 0; i < cookies.length; i++) {
+			var cookie = jQuery.trim(cookies[i]);
+			// Does this cookie string begin with the name we want?
+			if (cookie.substring(0, name.length + 1) === (name + '=')) {
+				cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+				break;
+			}
+		}
+	}
+	return cookieValue;
 }
 
 function login() {
@@ -118,12 +151,24 @@ function login() {
 
   var user_data = {'username' : id, 'password': pw, 'next': '/'}
 
-  var url = 'https://api.buzlotto.com/api/login';
+  var url = 'http://localhost:8000/api/login';
   var method = 'POST';
+	var csrftoken = getCookie('csrftoken');
 
-  var xhr = createCORSRequest(method, url);
-
-  xhr.send(JSON.stringify(user_data));
+  $.ajax({
+    headers: {
+      "X-CSRFToken": csrftoken
+    },
+    method: method,
+    url: url,
+    data: user_data,
+    xhrFields: {
+      withCredentials: false
+    }
+  })
+    .done(function(data){
+      console.log(data);
+    });
 }
 
 
@@ -131,27 +176,38 @@ function send_sms() {
   var num = $("input.phonenumber").val();
   var sms_data = {'phone_number': num};
 
-  var url = 'https://api.buzlotto.com/api/sms/send';
+  var url = 'http://localhost:8000/api/sms/send';
   var method = 'POST';
-  var xhr = createCORSRequest(method, url);
-  xhr.send(JSON.stringify(sms_data));
 
-
-  xhr.onload = function() {
-    console.log("success");
-  };
-
-  xhr.onerror = function() {
-    console.log("error");
-  };
-
-  xhr.send(JSON.stringify(sms_data));
-
+  $.ajax({
+    method: method,
+    url: url,
+    data: sms_data
+  })
+    .done(function(data) {
+      var status = data["is_successful"];
+      if(!status) {
+        var message = data["message"];
+        if (message == "WRONG_FORMAT") {
+          alert("잘못된 인증번호입니다.");
+        }
+        else if (message == "DAILY_LIMIT_EXCEEDED") {
+          alert("하루 전송 가능 횟수를 초과했습니다.");
+        }
+        else if (message == "RATE_LIMITED") {
+          alert("잠시 후 다시 시도하세요.");
+        }
+        else {
+          alert("인증번호 전송에 실패했습니다. 다시 시도하세요.");
+        }
+      }
+    });
 }
 
 function lastweek_winning_num() {
   if($(".winning_number_list").children().length == 0) {
-    var j = "https://api.buzlotto.com/api/lottos/past_week";
+    //var j = "https://api.buzlotto.com/api/lottos/past_week";
+    var j = "http://localhost:8000/api/lottos/past_week";
     var w;
     var n = [];
     var b;
@@ -218,54 +274,185 @@ function purchase_lotto() {
     arr = arr + num;
   }
   var lotto_data = {'combination': arr};
-  var url = 'https://api.buzlotto.com/api/lottos/purchase';
+  //var url = 'https://api.buzlotto.com/api/lottos/purchase';
+  var url = 'http://localhost:8000/api/lottos/purchase';
   var method = 'POST';
-  var xhr = createCORSRequest(method, url);
-  xhr.withCredentials = true;
 
-  xhr.setRequestHeader('Authorization', 'Basic ' + btoa(':'));
+  $.ajax({
+    method: method,
+    url: url,
+    data: lotto_data
+  })
+    .done(function(data){
+      var status = data["is_successful"];
+      if (!status) {
+        var code = data["code"];
+        if (code == 2009) {
+          alert("로또번호가 선택되지 않았습니다. 다시 시도하세요.");
+        }
+        else if (code == 2010) {
+          alert("로또권이 부족하여 구매에 실패했습니다! 로또권을 적립하세요.");
+        }
+        else if(code == 2011) {
+          alert("문제가 발생했습니다. 다시 시도하세요.");
+        }
+        else if(code == 2013) {
+          alert("잘못된 로또번호입니다. 다시 시도하세요.");
+        }
+        else if(code == 2008) {
+          alert("핸드폰 인증이 필요합니다. 인증 후 다시 시도하세요.");
+        }
+      }
+    });
+  //var xhr = createCORSRequest(method, url);
+  //xhr.withCredentials = true;
 
-  xhr.send(JSON.stringify(lotto_data));
+  //xhr.setRequestHeader('Authorization', 'Basic ' + btoa(':'));
 
-  xhr.onload = function() {
-    alert("성공적으로 등록되었습니다.");
-  }
+  //xhr.send(JSON.stringify(lotto_data));
 
-  xhr.onerror = function() {
-    alert("로또 등록에 실패하였습니다. 다시 시도하세요.");
-  }
+  //xhr.onload = function() {
+    //alert("성공적으로 등록되었습니다.");
+  //}
+
+  //xhr.onerror = function() {
+    //alert("로또 등록에 실패하였습니다. 다시 시도하세요.");
+  //}
 }
 
 function campaign_list() {
-  //if($(".available_campaign_list").length == 0) {
+  if($("row.campaign .available_campaign_list").length == 0) {
     //var url ="https://api.buzlotto.com/api/ads";
-    var url ="http://api.localhost:8000/api/ads";
-    console.log("campaign list");
+    var url = "http://localhost:8000/api/ads";
+    var method = 'GET';
+    var isMobile = get_device();
+    var camp_data;
+    
+    if(isMobile == "W") {
+      camp_data = {'is_mobile_web': 'N'};
+    }
+    else {
+      camp_data = {'is_mobile_web': 'Y'}
+    }
 
-    $.getJSON(url, function(data){
-      console.log(data);
-      $(".campaign_heading span.highlight.green").html(data.length);
-      console.log(data);
-      for(i = 0; i < data.length; i++) {
-        var name = data[i].name;
-        var thumbnail = data[i].icon_url;
-        var type = data[i].revenue_type;
-        var idx = i.toString();
+    $.ajax({
+      method: method,
+      url: url,
+      contentType: "application/json",
+      data: camp_data,
+      dataType: "json",
+      success: function(data) {
+        console.log(data);
+      }
+    })
+      .done(function(data){
+        console.log(data);
+      //$(".campaign_heading span.highlight.green").html(data.length);
+      //for(i = 0; i < data.length; i++) {
+        //var name = data[i].name;
+        //var thumbnail = data[i].icon_url;
+        //var type = data[i].revenue_type;
+        //var idx = i.toString();
 
-        if (i == data.length - 1) { //첫번째 캠페인 border 설정
-          if (type == 4) {
-            idx = idx + " install_type";
-          }
-          var wrapper = "<div class='available_campaign_list campaign_" + idx + "' onclick='campaign_popup($(this).html(), "+type+");' style='border-top: 1px solid #e0e2e3;'> <div class='available_campaign thumbnail'><img src='" + thumbnail + "'> </div> <div class='available_campaign title_type'> <div class='available_campaign title'>" + name + "</div> <div class='available_campaign type'><img src='/assets/types/type" + type + ".png'>" + "</div> </div> <div class='available_campaign coupon'> <img src='/assets/ic_b.png'><div class='coupon_count'>3장</div> </div> </div>";
-        }
-        else {
-          if (type == 4) {
-            idx = idx + " install_type";
-          }
-          var wrapper = "<div class='available_campaign_list campaign_" + idx + "' onclick='campaign_popup($(this).html(),"+type+");'> <div class='available_campaign thumbnail'><img src='" + thumbnail + "'> </div> <div class='available_campaign title_type'> <div class='available_campaign title'>" + name + "</div> <div class='available_campaign type'><img src='/assets/types/type" + type + ".png'>" + "</div> </div> <div class='available_campaign coupon'> <img src='/assets/ic_b.png'><div class='coupon_count'>3장</div> </div> </div>";
-        }
-      $(".campaign_heading").after(wrapper);
+        //if (i == data.length - 1) { //첫번째 캠페인 border 설정
+          //if (type == 4) {
+            //idx = idx + " install_type";
+          //}
+          //var wrapper = "<div class='available_campaign_list campaign_" + idx + "' onclick='campaign_popup($(this).html(), "+type+");' style='border-top: 1px solid #e0e2e3;'> <div class='available_campaign thumbnail'><img src='" + thumbnail + "'> </div> <div class='available_campaign title_type'> <div class='available_campaign title'>" + name + "</div> <div class='available_campaign type'><img src='/assets/types/type" + type + ".png'>" + "</div> </div> <div class='available_campaign coupon'> <img src='/assets/ic_b.png'><div class='coupon_count'>3장</div> </div> </div>";
+        //}
+        //else {
+          //if (type == 4) {
+            //idx = idx + " install_type";
+          //}
+          //var wrapper = "<div class='available_campaign_list campaign_" + idx + "' onclick='campaign_popup($(this).html(),"+type+");'> <div class='available_campaign thumbnail'><img src='" + thumbnail + "'> </div> <div class='available_campaign title_type'> <div class='available_campaign title'>" + name + "</div> <div class='available_campaign type'><img src='/assets/types/type" + type + ".png'>" + "</div> </div> <div class='available_campaign coupon'> <img src='/assets/ic_b.png'><div class='coupon_count'>3장</div> </div> </div>";
+        //}
+      //$(".campaign_heading").after(wrapper);
+      //}
+      });
+  }
+}
+
+function lotto_purchase_history() {
+  //var url = 'https://api.buzlotto.com/api/lottos';
+  var url = 'http://localhost:8000/api/lottos';
+  var method = 'GET';
+
+  $.ajax({
+    method: method,
+    url: url,
+    contentType: "application/json;charset=utf-8",
+    dataType: "json"
+  })
+    .done(function(data){
+      console.log(data);
+    });
+}
+
+function check_if_win() {
+
+}
+
+function update_user_bank_account() {
+  var bank = $(".account_input .select-box .select").html();
+  var num = $(".account_input .account_number").val();
+
+
+  var url = 'http://localhost:8000/api/accounts/update';
+  var method = 'POST';
+  var bank_data = {'bank_account_number': num};
+
+  console.log(bank);
+
+  $.ajax({
+    method: method,
+    url: url,
+    xhrFields: {
+      withCredentials: true
+    },
+    data: bank_data,
+    statusCode: {
+      200: function() {
+        alert("계좌번호가 성공적으로 등록되었습니다.");
+      },
+      400: function() {
+        alert("계좌번호 등록에 실패했습니다. 다시 시도하세요.");
+      }
+    }
+  });
+}
+
+function user_pw_update() {
+  var pw = $(".pw_new_insert").val();
+  var url = 'http://localhost:8000/api/accounts/update';
+  var method = 'POST';
+
+  var user_data = {'django_user': {'password': pw}};
+
+  $.ajax({
+    method: method,
+    url: url,
+    data: user_data
+  })
+    .done(function(data){
+      var code = data["code"];
+      if(code == 2000) {
+        alert("비밀번호가 성공적으로 변경되었습니다.");
+      }
+      else {
+        alert("비밀번호 변경에 실패했습니다. 다시 시도하세요.");
       }
     });
-  //}
+}
+
+function register_bank_account() {
+
+}
+
+function delete_user() {
+  var url = 'http://localhost:8000/api/accounts/delete_account';
+  var method = 'POST';
+  $.ajax({
+    method: method,
+    url: url
+  });
 }

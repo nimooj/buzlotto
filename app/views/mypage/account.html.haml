@@ -2,26 +2,25 @@
   계좌번호 등록
 
 %row.account_input
-  - if !@user
-    .select-box
-      = text_field_tag :bank, params[:bank], placeholder: '은행', class: 'select', disabled: true
-      = image_tag "ic_down.png"
-    %input{class: "account_number", placeholder: "계좌번호 입력"}
-  - else
-    .select-box
-      = text_field_tag :bank, params[:bank], placeholder: "#{@user[:bank]}", class: 'select', disabled: true
-      = image_tag "ic_down.png"
-    %input{class: "account_number", placeholder: "계좌번호 입력", value: "#{@user[:account_num]}"}
+  -#- if !@user
+  .select-box
+    = text_field_tag :bank, params[:bank], placeholder: '은행', class: 'select', disabled: true
+    = image_tag "ic_down.png"
+  %input{class: "account_number", placeholder: "계좌번호 입력"}
+  -#- else
+    -#.select-box
+      -#= text_field_tag :bank, params[:bank], placeholder: "#{@user[:bank]}", class: 'select', disabled: true
+      -#= image_tag "ic_down.png"
+    -#%input{class: "account_number", placeholder: "계좌번호 입력", value: "#{@user[:account_num]}"}
 
 = render 'partials/account_popup'
 
 %row.account_btn
-  - if !@user
-    %button
-      등록하기
-  - else
-    %button
-      수정하기
+  %button{disabled: 'true'}
+    등록하기
+  -#계좌정보가 있을 경우
+  -#%button{disabled: 'true'}
+    -#수정하기
 
 %row.account_info
   %ul
@@ -34,7 +33,23 @@
 
 :javascript
   $(function(){
-  $(".select-box").click(function(){
-    account_popup();
-  });
+    var bc = 0;
+    var bn = 0;
+
+    $(".account_input .select-box").click(function(){
+      bc = 1;
+      validate_bank_btn(bc, bn);
+    });
+
+    $(".account_input .account_number").keyup(function(){
+      bn = 1;
+      validate_bank_btn(bc, bn);
+    });
+    $(".account_btn button").click(function(){
+      update_user_bank_account();
+    });
+
+    $(".select-box").click(function(){
+      account_popup();
+    });
   });

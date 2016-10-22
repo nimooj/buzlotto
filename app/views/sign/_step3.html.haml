@@ -15,7 +15,7 @@
     = text_field_tag :cnum, params[:cnum], pattern: "[0-9]{6}", class: "cnum"
     .content
       SMS로 수신된 인증번호를 입력하세요. 
-      = link_to '인증번호 재전송'
+      = link_to '인증번호 재전송', 'javascript:send_sms();'
 
   %row.step_confirm_btn
     %button{disabled: true}
@@ -47,9 +47,6 @@
       var is_valid = validate_vnum();
       if (is_valid == 1) {
         signup_account();
-      }
-      else {
-        alert("다시 시도해주세요.");
       }
     });
   });
