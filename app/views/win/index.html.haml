@@ -1,5 +1,5 @@
 %row.win_result
-  = render 'none'
+  = render 'win'
 
 %row.win_confirm_user
   %ul.heading
@@ -33,3 +33,8 @@
 %row.win_btn
   %button.check_participation
     = link_to '버즈로또 참여기록 확인하기', mypage_lotto_history_path
+
+:javascript
+  $(function(){
+    check_if_won();
+  });

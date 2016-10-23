@@ -323,7 +323,7 @@ function purchase_lotto() {
 function campaign_list() {
   if($("row.campaign .available_campaign_list").length == 0) {
     //var url ="https://api.buzlotto.com/api/ads";
-    var url = "http://localhost:8000/api/ads";
+    var url = "http://localhost:8000/api/ads/";
     var method = 'GET';
     var isMobile = get_device();
     var camp_data;
@@ -340,34 +340,30 @@ function campaign_list() {
       url: url,
       contentType: "application/json",
       data: camp_data,
-      dataType: "json",
-      success: function(data) {
-        console.log(data);
-      }
+      dataType: "json"
     })
       .done(function(data){
-        console.log(data);
-      //$(".campaign_heading span.highlight.green").html(data.length);
-      //for(i = 0; i < data.length; i++) {
-        //var name = data[i].name;
-        //var thumbnail = data[i].icon_url;
-        //var type = data[i].revenue_type;
-        //var idx = i.toString();
+      $(".campaign_heading span.highlight.green").html(data.length);
+      for(i = 0; i < data.length; i++) {
+        var name = data[i].name;
+        var thumbnail = data[i].icon_url;
+        var type = data[i].revenue_type;
+        var idx = i.toString();
 
-        //if (i == data.length - 1) { //첫번째 캠페인 border 설정
-          //if (type == 4) {
-            //idx = idx + " install_type";
-          //}
-          //var wrapper = "<div class='available_campaign_list campaign_" + idx + "' onclick='campaign_popup($(this).html(), "+type+");' style='border-top: 1px solid #e0e2e3;'> <div class='available_campaign thumbnail'><img src='" + thumbnail + "'> </div> <div class='available_campaign title_type'> <div class='available_campaign title'>" + name + "</div> <div class='available_campaign type'><img src='/assets/types/type" + type + ".png'>" + "</div> </div> <div class='available_campaign coupon'> <img src='/assets/ic_b.png'><div class='coupon_count'>3장</div> </div> </div>";
-        //}
-        //else {
-          //if (type == 4) {
-            //idx = idx + " install_type";
-          //}
-          //var wrapper = "<div class='available_campaign_list campaign_" + idx + "' onclick='campaign_popup($(this).html(),"+type+");'> <div class='available_campaign thumbnail'><img src='" + thumbnail + "'> </div> <div class='available_campaign title_type'> <div class='available_campaign title'>" + name + "</div> <div class='available_campaign type'><img src='/assets/types/type" + type + ".png'>" + "</div> </div> <div class='available_campaign coupon'> <img src='/assets/ic_b.png'><div class='coupon_count'>3장</div> </div> </div>";
-        //}
-      //$(".campaign_heading").after(wrapper);
-      //}
+        if (i == data.length - 1) { //첫번째 캠페인 border 설정
+          if (type == 4) {
+            idx = idx + " install_type";
+          }
+          var wrapper = "<div class='available_campaign_list campaign_" + idx + "' onclick='campaign_popup($(this).html(), "+type+");' style='border-top: 1px solid #e0e2e3;'> <div class='available_campaign thumbnail'><img src='" + thumbnail + "'> </div> <div class='available_campaign title_type'> <div class='available_campaign title'>" + name + "</div> <div class='available_campaign type'><img src='/assets/types/type" + type + ".png'>" + "</div> </div> <div class='available_campaign coupon'> <img src='/assets/ic_b.png'><div class='coupon_count'>3장</div> </div> </div>";
+        }
+        else {
+          if (type == 4) {
+            idx = idx + " install_type";
+          }
+          var wrapper = "<div class='available_campaign_list campaign_" + idx + "' onclick='campaign_popup($(this).html(),"+type+");'> <div class='available_campaign thumbnail'><img src='" + thumbnail + "'> </div> <div class='available_campaign title_type'> <div class='available_campaign title'>" + name + "</div> <div class='available_campaign type'><img src='/assets/types/type" + type + ".png'>" + "</div> </div> <div class='available_campaign coupon'> <img src='/assets/ic_b.png'><div class='coupon_count'>3장</div> </div> </div>";
+        }
+      $(".campaign_heading").after(wrapper);
+      }
       });
   }
 }
@@ -455,4 +451,19 @@ function delete_user() {
     method: method,
     url: url
   });
+}
+
+function check_if_won() {
+  var url = 'http://localhost:8000/api/lottos/check_if_won';
+  var method = 'GET';
+
+  $.ajax({
+    method: method,
+    url: url
+  })
+    .done(function(data){
+    //if win => render _win.html
+    // else if loost => render _loose.html;
+    // else render _none.html
+    });
 }
