@@ -13,7 +13,7 @@
   의 주인공은 바로 당신!
 
 %row.share_img
-  = image_tag 'share_img.jpg'
+  -#= image_tag 'share_img.jpg'
 
 %row.share_txt
   친구에게 공유해서 추가로 
@@ -37,7 +37,6 @@
 = render 'footer'
 
 :javascript
-  Kakao.init('9f92b930dd2ece90f59baa6b34183b1c');
   Kakao.Link.createTalkLinkButton({
         container: '#kakao-share-btn',
         label: "버즈로또 - 이번주 1억원의 주인공은 바로 당신!",
@@ -62,6 +61,7 @@
     }; */
 
     $(function(){
+    get_share_rand_image();
       $(".fb-share-btn").on('click', function(){
        FB.ui({
           method: 'share',
