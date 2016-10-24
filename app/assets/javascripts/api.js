@@ -31,8 +31,8 @@ function id_check() {
   var user_data = {'username': id};
   var result = 0;
 
-  //var url = 'https://api.buzlotto.com/api/accounts/check_id_duplicate';
-  var url = 'http://127.0.0.1:8000/api/accounts/check_id_duplicate';
+  //var url = 'http://localhost:8000/api/accounts/check_id_duplicate';
+  var url = 'http://localhost:8000/api/accounts/check_id_duplicate';
   var method = 'GET';
 
   $.ajax({
@@ -112,7 +112,7 @@ function signup_account() {
       }
     };
 
-    var url = 'https://api.buzlotto.com/api/accounts/signup';
+    var url = 'http://localhost:8000/api/accounts/signup';
     var method = 'POST';
     var xhr = createCORSRequest(method, url);
 
@@ -130,19 +130,19 @@ function signup_account() {
 }
 
 function getCookie(name) {
-	var cookieValue = null;
-	if (document.cookie && document.cookie !== '') {
-		var cookies = document.cookie.split(';');
-		for (var i = 0; i < cookies.length; i++) {
-			var cookie = jQuery.trim(cookies[i]);
-			// Does this cookie string begin with the name we want?
-			if (cookie.substring(0, name.length + 1) === (name + '=')) {
-				cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-				break;
-			}
-		}
-	}
-	return cookieValue;
+  var cookieValue = null;
+  if (document.cookie && document.cookie !== '') {
+    var cookies = document.cookie.split(';');
+    for (var i = 0; i < cookies.length; i++) {
+      var cookie = jQuery.trim(cookies[i]);
+      // Does this cookie string begin with the name we want?
+      if (cookie.substring(0, name.length + 1) === (name + '=')) {
+        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+        break;
+      }
+    }
+  }
+  return cookieValue;
 }
 
 function login() {
@@ -153,7 +153,7 @@ function login() {
 
   var url = 'http://localhost:8000/api/login';
   var method = 'POST';
-	var csrftoken = getCookie('csrftoken');
+  var csrftoken = getCookie('csrftoken');
 
   $.ajax({
     headers: {
@@ -206,7 +206,7 @@ function send_sms() {
 
 function lastweek_winning_num() {
   if($(".winning_number_list").children().length == 0) {
-    //var j = "https://api.buzlotto.com/api/lottos/past_week";
+    //var j = "http://localhost:8000/api/lottos/past_week";
     var j = "http://localhost:8000/api/lottos/past_week";
     var w;
     var n = [];
@@ -274,7 +274,7 @@ function purchase_lotto() {
     arr = arr + num;
   }
   var lotto_data = {'combination': arr};
-  //var url = 'https://api.buzlotto.com/api/lottos/purchase';
+  //var url = 'http://localhost:8000/api/lottos/purchase';
   var url = 'http://localhost:8000/api/lottos/purchase';
   var method = 'POST';
 
@@ -322,7 +322,7 @@ function purchase_lotto() {
 
 function campaign_list() {
   if($("row.campaign .available_campaign_list").length == 0) {
-    //var url ="https://api.buzlotto.com/api/ads";
+    //var url ="http://localhost:8000/api/ads";
     var url = "http://localhost:8000/api/ads/";
     var method = 'GET';
     var isMobile = get_device();
@@ -369,7 +369,7 @@ function campaign_list() {
 }
 
 function lotto_purchase_history() {
-  //var url = 'https://api.buzlotto.com/api/lottos';
+  //var url = 'http://localhost:8000/api/lottos';
   var url = 'http://localhost:8000/api/lottos';
   var method = 'GET';
 
@@ -437,6 +437,19 @@ function user_pw_update() {
       else {
         alert("비밀번호 변경에 실패했습니다. 다시 시도하세요.");
       }
+    });
+}
+
+function get_share_rand_image() {
+  var url = 'http://localhost:8000/api/get_lotto_charm_image_url';
+  var method = 'GET';
+  $.ajax({
+    method: method,
+    url: url
+  })
+    .done(function(data){
+      console.log(data);
+      $(".share_img").html("<img src='" + data["image_url"] +"'>");
     });
 }
 
