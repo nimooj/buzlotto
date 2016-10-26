@@ -29,6 +29,7 @@
 
     $(".step_phonenumber_btn").click(function(){
       send_sms();
+      alert("인증번호가 전송되었습니다. 잠시만 기다려주세요.");
       bc = 1;
       validate_next3(sc, bc, vc);
     });

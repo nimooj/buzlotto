@@ -3,8 +3,14 @@
 
 :javascript 
   $(function(){
-    if(Cookies.get('c_user')) {
-      var wrapper = "<div class='banner_content'><div class='banner_heading'>" + Cookies.get('c_user') + "님의 보유 로또권은 <span class='highlight green'>? 장</span>입니다.</div><div class='banner_btn'><a href='/mypage/lotto'><img class='btn_l' src='/assets/btn/btn_register.png'/></a><a href='/win'><img class='btn_r' src='/assets/btn/btn_confirm.png'></a></div></div><img class='banner_img' src='/assets/main_banner_black.png'>";
+    var user = get_user_state();
+    if(user["is_successful"]) {
+      var name = user["account"]["django_user"]["username"];
+      var ticket = lotto_ticket();
+      var wrapper = "<div class='banner_content'><div class='banner_heading'>" + name + "님의 보유 로또권은 <span class='highlight green'>"+ticket+" 장</span>입니다.</div><div class='banner_btn'><a href='/mypage/lotto'><img class='btn_l' src='/assets/btn/btn_register.png'/></a><a href='/win'><img class='btn_r' src='/assets/btn/btn_confirm.png'></a></div></div><img class='banner_img' src='/assets/main_banner_black.png'>";
       $("row.banner").html(wrapper);
+
+      Cookies.set('username', name);
+      Cookies.set('ticket', ticket);
     }
   });

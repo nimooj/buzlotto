@@ -4,45 +4,6 @@
     %span.highlight.green
     개
 
-  -#- @available_campaigns.each do |c|
-    -#- if c[:type] == 4
-      -#.available_campaign_list.install_type{onclick:'campaign_popup($(this).html(), 4)'}
-        -#.available_campaign.thumbnail
-          -#= image_tag c[:thumbnail]
-        -#.available_campaign.title_type
-          -#.available_campaign.title
-            -#= c[:title]
-          -#%div{class: "available_campaign type"}
-            -#= image_tag 'types/type4.png'
-        -#.available_campaign.coupon
-          -#= image_tag "ic_b.png"
-          -#.coupon_count
-            -#= c[:coupon]
-            -#장
-    -#- else
-      -#.available_campaign_list{onclick:"campaign_popup($(this).html(), #{c[:type]})"}
-        -#.available_campaign.thumbnail
-          -#= image_tag c[:thumbnail]
-        -#.available_campaign.title_type
-          -#.available_campaign.title
-            -#= c[:title]
-          -#%div{class: "available_campaign type"}
-            -#- if c[:type] == 1
-              -#= image_tag 'types/type1.png'
-            -#- elsif c[:type] == 2
-              -#= image_tag 'types/type2.png'
-            -#- elsif c[:type] == 3
-              -#= image_tag 'types/type3.png'
-            -#- elsif c[:type] == 5
-              -#= image_tag 'types/type5.png'
-            -#- elsif c[:type] == 6
-              -#= image_tag 'types/type6.png'
-        -#.available_campaign.coupon
-          -#= image_tag "ic_b.png"
-          -#.coupon_count
-            -#= c[:coupon]
-            -#장
-  
   = render 'partials/unavailable'
   = render 'partials/joinus'
   = render 'partials/campaign_enroll'

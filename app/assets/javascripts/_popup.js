@@ -11,13 +11,14 @@ function campaign_popup_highlight(count) {
   l = l.indexOf("로또권 " + count + "장");
 }
 
-function campaign_popup(e, type){
+function campaign_popup(e){
   var $this = e;
+  var type = "";
   close_popup();
 
   $(".filter").css('display', 'block');
   if (Cookies.get('c_user')) { //show popup campaign
-    if (type == 4) {
+    if (e.indexOf("install_type") != -1) {
       $(".popup.campaign_enroll").addClass("cpi_campaign");
     }
     else {
@@ -27,7 +28,6 @@ function campaign_popup(e, type){
     cp_campaign_list = $this;
     $(".popup_campaign").html(cp_campaign_list);
     $(".popup_campaign").html($this);
-    campaign_popup_highlight($(".popup_campaign .coupon_count").text());
   }
   else { //show popup joinus
     $(".popup.joinus").css('display', 'block');
@@ -51,11 +51,8 @@ function account_popup() {
 }
 
 function lotto_popup() {
-  close_popup();
-  $(".lotto_footer_btn .lotto_enroll_btn").click(function(){
-    $(".filter").css('display', 'block');
-    $(".popup").css('display', 'block');
-  });
+  $(".filter").css('display', 'block');
+  $(".popup").css('display', 'block');
 }
 
 function unavailable() {

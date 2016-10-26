@@ -5,11 +5,6 @@
     등록하기
 
 %row.lotto_heading
-  = session[:authorized_user]
-  님의 보유 로또권은
-  %span.highlight.green
-    ? 장
-  입니다.
 
 %row.lotto_field
   - (1..45).each do |c|
@@ -30,13 +25,26 @@
     %div{class: "lotto_selected ball_#{i}"}
       %p.num
         ?
-
   
 = render 'partials/lotto_enroll'
 
 :javascript
   $(function(){
     set_field([]);
+
+    $(".lotto_footer_btn .lotto_enroll_btn").click(function(){
+      lotto_popup();
+
+      //send to api
+      purchase_lotto(balls);
+    });
+
+    //get user_data for popup
+    var name = Cookies.get('username');
+    var ticket = Cookies.get('ticket');
+
+  $("row.lotto_heading").html(name + "님의 보유 로또권은 <span class='highlight green'>"+ticket+"장</span>입니다.");
+
     $("button.lotto_auto_btn").on('click', function(){
       lotto_auto_select();
     });

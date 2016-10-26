@@ -10,11 +10,12 @@
 
 :javascript 
   $(function(){
-    var wrapper = "<div class='banner_content'><div class='banner_heading'>" + Cookies.get('c_user') + "님의 보유 로또권은 <span class='highlight green'>? 장</span>입니다.</div><div class='banner_btn mypage_banner_btn'><a href='/mypage/history'><img src='/assets/btn/lottohistory.png'/></a></div></div><img class='banner_img' src='/assets/main_banner_black.png'>";
+  var name = Cookies.get('username');
+  var ticket = Cookies.get('ticket');
+    var wrapper = "<div class='banner_content'><div class='banner_heading'>" + name + "님의 보유 로또권은 <span class='highlight green'>" + ticket + " 장</span>입니다.</div><div class='banner_btn mypage_banner_btn'><a href='/mypage/history'><img src='/assets/btn/lottohistory.png'/></a></div></div><img class='banner_img' src='/assets/main_banner_black.png'>";
     $("row.banner").html(wrapper);
 
     $(".logout_btn").click(function(){
-      Cookies.remove('c_user');
-      window.location.replace('/');
+    logout();
     });
   });

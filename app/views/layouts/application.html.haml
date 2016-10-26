@@ -12,7 +12,7 @@
       $(function(){
         var l = window.navigator.userAgent;
 
-        if(l.indexOf("Version/") != -1) {
+                if(l.indexOf("Version/") != -1) {
           l = l.split("Version/")[1].split(" ");
           if (parseInt(l[0]) < 5) {
             alert("지원하지 않는 브라우저 버전입니다. Chrome 등을 이용해주세요.");
@@ -28,3 +28,4 @@
     = render 'layouts/nav'
     .container
       = yield
+
