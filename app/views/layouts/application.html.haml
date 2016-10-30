@@ -12,11 +12,8 @@
       $(function(){
         var l = window.navigator.userAgent;
 
-                if(l.indexOf("Version/") != -1) {
-          l = l.split("Version/")[1].split(" ");
-          if (parseInt(l[0]) < 5) {
-            alert("지원하지 않는 브라우저 버전입니다. Chrome 등을 이용해주세요.");
-          }
+        if(l.indexOf("Chrome/") == -1) {
+          alert("지원하지 않는 브라우저 버전입니다. Chrome 등을 이용해주세요.");
         }
         else if(l.indexOf("MSIE") != -1) {
           l = l.split("MSIE ")[1].split(";");
