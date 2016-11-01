@@ -23,6 +23,11 @@
 
 :javascript
   $(function(){
+    var page = 1;
+
     point_history();
-    load_history();
+    $("button.load_more").click(function(){
+      page = page + 1;
+      point_load_history(page);
+    });
   });

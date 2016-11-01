@@ -66,8 +66,8 @@ function purchase_lotto(b_data) {
     });
 }
  
-function purchase_history() {
-  var url = 'http://localhost:8000/api/lottos/';
+function purchase_history() { //참여 기록 확인하기
+  var url = "http://localhost:8000/api/lottos/?page=1"+"&page_size=20";
   var method = 'GET';
   $.ajax({
     headers: {
@@ -76,25 +76,87 @@ function purchase_history() {
     method: method,
     url: url
   })
-    .done(function(data){
-      console.log("참여 기록 확인");
-      console.log(data);
-      for(i = data.length - 1; i >= 0; i--) {
+    .done(function(data) {
+      var j = {};
+      var t = {};
+      var combi = [];
+      console.log(data.results);
+      for(i = data.results.length - 1; i >= 0; i--) {
+        var w = data.results[i]["week_id"];
+        var c = data.results[i]["combination"];
+
+        if ( w == j[w] )
+        j[w] = [];
 
       }
+      console.log(j) ;
+    });
+}
+
+function lotto_load_history(page) {
+  var url = "http://localhost:8000/api/lottos/?page=" + page.toString() + "&page_size=20";
+  var method = 'GET';
+  $.ajax({
+    headers: {
+      'Authorization': 'Token 5600ed312824c017a167605c3258f9158e77293a',
+    },
+    method: method,
+    url: url
+  })
+    .done(function(data) {
+      var arr = [];
+      console.log(data.results);
     });
 }
 
 function point_history() {
-  var url = 'http://localhost:8000/api/lottos/lotto_reserve_history';
+  var url = 'http://localhost:8000/api/lottos/lotto_reserve_history/?page_size=3';
   var method = 'GET';
+  var ctime = "";
+  var type = "";
+  var description = "";
+  var count = "";
   $.ajax({
+    headers: {
+      'Authorization': 'Token 5600ed312824c017a167605c3258f9158e77293a',
+    },
     url: url,
     method: method
   })
     .done(function(data){
-      console.log("로또권 적립 내역");
-      console.log(data);
+      for( i = 0; i < data.results.length; i++ ) {
+        ctime = data.results[i]["updated_at"].split(/T/)[0];
+        //type = data.results[i]["reserve_type"];
+        description = data.results[i]["description"];
+        count = data.results[i]["user_get_lotto_count"];
+        $("row.history_list").append("<div class='mypage_history_item'><div class='ctime'>"+ctime+"</div><div class='type'>"+type+"</div><div class='name'>"+description+"</div><div class='comment'>적립</div><div class='coupon'><img src='/assets/ic_b.png'><div class='coupon_count'>"+count+"장</div></div></div>")
+      }
+    });
+}
+
+function point_load_history(page) {
+  var url = "http://localhost:8000/api/lottos/lotto_reserve_history?page="+page+"&page_size=3";
+  var method = 'GET';
+  var ctime = "";
+  var type = "";
+  var description = "";
+  var count = "";
+  $.ajax({
+    headers: {
+      'Authorization': 'Token 5600ed312824c017a167605c3258f9158e77293a',
+    },
+    url: url,
+    method: method
+  })
+    .done(function(data){
+
+      for( i = 0; i < data.results.length; i++ ) {
+        ctime = data.results[i]["updated_at"].split(/T/)[0];
+        //type = data.results[i]["reserve_type"];
+        description = data.results[i]["description"];
+        count = data.results[i]["user_get_lotto_count"];
+        $("row.history_list").append("<div class='mypage_history_item'><div class='ctime'>"+ctime+"</div><div class='type'>"+type+"</div><div class='name'>"+description+"</div><div class='comment'>적립</div><div class='coupon'><img src='/assets/ic_b.png'><div class='coupon_count'>"+count+"장</div></div></div>")
+      }
     });
 }
 

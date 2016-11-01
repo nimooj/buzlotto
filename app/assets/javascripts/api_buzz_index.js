@@ -54,7 +54,6 @@ function get_share_rand_image() {
     url: url
   })
     .done(function(data){
-      console.log(data);
       $(".share_img").html("<img src='" + data["image_url"] +"'>");
     });
 }

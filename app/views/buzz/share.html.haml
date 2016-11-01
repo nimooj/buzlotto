@@ -37,6 +37,17 @@
 = render 'footer'
 
 :javascript
+  $(function(){
+    get_share_rand_image();
+    $(".fb-share-btn").on('click', function(){
+     FB.ui({
+        method: 'share',
+        display: 'popup',
+        href: 'https://buzlotto.herokuapp.com',
+      }, function(response){});
+    });
+  });
+
   Kakao.Link.createTalkLinkButton({
         container: '#kakao-share-btn',
         label: "버즈로또 - 이번주 1억원의 주인공은 바로 당신!",
@@ -60,15 +71,5 @@
       });
     }; */
 
-    $(function(){
-    get_share_rand_image();
-      $(".fb-share-btn").on('click', function(){
-       FB.ui({
-          method: 'share',
-          display: 'popup',
-          href: 'https://buzlotto.herokuapp.com',
-        }, function(response){});
-      });
-    });
 
 
