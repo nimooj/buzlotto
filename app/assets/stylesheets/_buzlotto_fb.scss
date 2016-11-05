@@ -5,15 +5,9 @@
       margin-top: 88px;
     }
     @media screen and (max-device-width: 320px) {
-      transform: scale(.95, .95);
+      transform: scale(.9, .9);
       margin-left: -.6em;
+      float: left;
     }
   }      
-  //.buzlotto_fb {
-    //@media screen and (max-device-width: 420px) {
-      //width: 100%;
-    //}
-    //width: 100%;
-    //overflow-x: hidden;
-  //}
 }

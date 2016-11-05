@@ -11,8 +11,12 @@
     :javascript
       $(function(){
         var l = window.navigator.userAgent;
+        var v = l.indexOf("Version/");
+        if (v != -1) {
+          v = l.split("Version/")[1].split(" ");
+        }
 
-        if(l.indexOf("Chrome/") == -1) {
+        if(l.indexOf("Chrome/") != -1 && v < 5 && v != -1) { // -1 : str doesn't exist
           alert("지원하지 않는 브라우저 버전입니다. Chrome 등을 이용해주세요.");
         }
         else if(l.indexOf("MSIE") != -1) {

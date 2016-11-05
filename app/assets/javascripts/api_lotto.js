@@ -190,6 +190,7 @@ function lastweek_winning_num() {
     var b;
 
     $.getJSON(j, function(data){
+      w = data["week_id"];
       n = data["winning_combination"].split("_");
       b = data["bonus_number"];
 
@@ -213,7 +214,7 @@ function lastweek_winning_num() {
         else {
           c = 'purple';
         }
-        t = t + "<div class='winning " + c + "'>" + n[i] + "</div>";
+        t = t + "<div class='winning " + c + "'><p class='num'>" + n[i] + "</p></div>";
       }
       t = t + "<img src='/assets/ic_plus.png' class='ic_plus'>";
 
@@ -234,7 +235,7 @@ function lastweek_winning_num() {
         c = 'purple';
       }
 
-      t = t + "<div class='winning " + c + "'>" + b + "</div>";
+      t = t + "<div class='winning " + c + "'><p class='num'>" + b + "</p></div>";
       $(".winning_number_list").html(t);
     });
   }

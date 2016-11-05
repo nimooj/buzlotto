@@ -41,6 +41,8 @@
           @media screen and (max-device-width: 320px) {
             margin-bottom: .1em;
           }
+          overflow: hidden;
+          text-overflow: ellipsis;
           margin-bottom: 25px;
           font-weight: bold;
         }
@@ -64,12 +66,11 @@
         }
         @media screen and (max-device-width: 420px) {
           margin-left: 1em;
-          width: 50%;
+          width: 55%;
         }
         @media screen and (max-device-width: 320px) {
           margin-bottom: .1em;
         }
-        text-overflow: ellipsis;
         overflow: hidden;
         white-space: nowrap;
         margin-left: 39px; 
@@ -111,9 +112,11 @@
         padding: .9em 1.3em 1em 1em;
       }
       @media screen and (max-device-width: 360px) {
+        margin-bottom: 0;
         font-size: 1.1em;
         padding: .9em 1em .8em .8em;
       }
+      margin: -1px 0 0 0;
       font-size: $heading-font-size;
       padding: 28px 33px 28px 28px;
       border-bottom: $base-border;

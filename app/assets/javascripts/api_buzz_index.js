@@ -1,6 +1,8 @@
+function camp_install_check() {
+}
+
 function campaign_list() {
   if($("row.campaign .available_campaign_list").length == 0) {
-    //var url ="http://localhost:8000/api/ads";
     var url = "http://localhost:8000/api/ads/";
     var method = 'GET';
     var isMobile = get_device();
@@ -22,7 +24,7 @@ function campaign_list() {
     })
       .done(function(data){
       $(".campaign_heading span.highlight.green").html(data.length);
-      for(i = 0; i < data.length; i++) {
+      for(i = 0; i < 11; i++) {
         var name = data[i].name;
         var thumbnail = data[i].icon_url;
         var type = data[i].revenue_type;
