@@ -31,9 +31,15 @@
 :javascript
   $(function(){
     set_field([]);
+    Cookies.set('ticket', 1);
 
     $(".lotto_footer_btn .lotto_enroll_btn").click(function(){
-      lotto_popup();
+      if ( Cookies.get('ticket') == 1 ) {
+        window.location.replace('/buzz/share');
+      }
+      else {
+        lotto_popup();
+      }
 
       //send to api
       purchase_lotto(balls);

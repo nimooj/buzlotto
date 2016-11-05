@@ -16,11 +16,6 @@
   $(function(){ 
     var ticket = Cookies.get('ticket') - 1;
 
-    if( ticket == 0 ) {
-      $("popup.lotto_enroll .popup_btn .lotto_enroll_btn")
-      .attr('disabled', true);
-    }
-
     $(".popup.lotto_enroll .popup_heading span.highlight.green").html(ticket + "장");
 
     $(".popup.lotto_enroll .lotto_enroll_btn").click(function(){
