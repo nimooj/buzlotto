@@ -66,111 +66,131 @@ function purchase_lotto(b_data) {
     });
 }
  
-function purchase_history() { //참여 기록 확인하기
-  var url = "http://localhost:8000/api/lottos/?page=1"+"&page_size=20";
+function purchase_history(url) { //참여 기록 확인하기
   var method = 'GET';
+  var next = "";
+
   $.ajax({
     headers: {
       'Authorization': 'Token 5600ed312824c017a167605c3258f9158e77293a',
     },
     method: method,
-    url: url
+    url: url,
+    asyn: false
   })
     .done(function(data) {
-      var j = {};
-      var t = {};
+      next = data.next;
       var combi = [];
-      console.log(data.results);
-      for(i = data.results.length - 1; i >= 0; i--) {
+
+      for(i = 0; i < data.results.length; i++) {
         var w = data.results[i]["week_id"];
-        var c = data.results[i]["combination"];
+        var c = data.results[i]["combination"].split("_");
 
-        if ( w == j[w] )
-        j[w] = [];
+        if ( $(".history_box."+w).length == 0 ) { //리스트 박스 생성
+          combi = weekly_winning_num(w);
+          if ( combi.length == 0 ) { //이번주 당첨 번호가 없을 때
+          $("row.mypage_lotto_history_list").append("<div class='history_box "+w+"'><div class='weekly_winning_number'><div class='heading'><span class='highlight green'>"+w+"회</span>차 버즈로또 당첨번호</div><div class='content'><div class='lotto_ball ball_1'><img src='/assets/q_lotto.png'></div><div class='lotto_ball ball_2'><img src='/assets/q_lotto.png'></div><div class='lotto_ball ball_3'><img src='/assets/q_lotto.png'></div><div class='lotto_ball ball_4'><img src='/assets/q_lotto.png'></div> <div class='lotto_ball ball_5'><img src='/assets/q_lotto.png'></div> <div class='lotto_ball ball_6'><img src='/assets/q_lotto.png'></div><img src='/assets/ic_plus.png' class='ic_plus'><img src='/assets/q_lotto.png' class='bonus_lotto_ball'><div class='bonus_title'>보너스</div></div></div><div class='my_lotto_number'></div></div>");
+          }
+          else { //당첨번호가 있을 때
+            $("row.mypage_lotto_history_list").append("<div class='history_box "+w+"'><div class='weekly_winning_number'><div class='heading'><span class='highlight green'>"+w+"회</span>차 버즈로또 당첨번호</div><div class='content'><div class='lotto_ball lotto_active_"+combi[0]+"'><p class='num'>"+combi[0]+"</p></div><div class='lotto_ball lotto_active_"+combi[1]+"'><p class='num'>"+combi[1]+"</p></div><div class='lotto_ball lotto_active_"+combi[2]+"'><p class='num'>"+combi[2]+"</p></div><div class='lotto_ball lotto_active_"+combi[3]+"'><p class='num'>"+combi[3]+"</p></div><div class='lotto_ball lotto_active_"+combi[4]+"'><p class='num'>"+combi[4]+"</p></div> <div class='lotto_ball lotto_active_"+combi[5]+"'><p class='num'>"+combi[5]+"</p></div><img src='/assets/ic_plus.png' class='ic_plus'><div class='bonus_lotto_ball lotto_ball lotto_active_"+combi[6]+"'><p class='num'>"+combi[6]+"</p></div><div class='bonus_title'>보너스</div></div></div><div class='my_lotto_number'></div></div>");
+          }
 
+          var str = "";
+
+          // 당첨번호와 일치할 때
+          for ( j = 0; j < 6; j++ ) {
+            if ( combi.indexOf(c[j]) != -1) {
+              str = str + "<div class='lotto_number number_"+c[j]+"'>"+c[j]+"</div>";
+            }
+            else {
+              str = str + "<div class='lotto_number number'>"+c[j]+"</div>";
+            }
+          }
+          $(".history_box." + w + " .my_lotto_number").append("<div class='heading'><span class='highlight green'>"+w+"회</span>차 나의 등록 번호</div><div class='content'>"+str+"</div>");
+        } 
+        else { // 이미 생성된 history_box 
+          var str = "";
+
+          // 당첨번호와 일치할 때
+          for ( j = 0; j < 6; j++ ) {
+            if ( combi.indexOf(c[j]) != -1) {
+              str = str + "<div class='lotto_number number_"+c[j]+"'>"+c[j]+"</div>";
+            }
+            else {
+              str = str + "<div class='lotto_number number'>"+c[j]+"</div>";
+            }
+          }
+
+          $(".history_box."+w + " .my_lotto_number").append("<div class='content'>"+str+"</div>");
+        }
       }
-      console.log(j) ;
     });
+  return next;
 }
 
-function lotto_load_history(page) {
-  var url = "http://localhost:8000/api/lottos/?page=" + page.toString() + "&page_size=20";
+function point_history(url) { //로또권 내역
   var method = 'GET';
+  var next;
+
   $.ajax({
     headers: {
       'Authorization': 'Token 5600ed312824c017a167605c3258f9158e77293a',
     },
+    url: url,
     method: method,
-    url: url
-  })
-    .done(function(data) {
-      var arr = [];
-      console.log(data.results);
-    });
-}
-
-function point_history() {
-  var url = 'http://localhost:8000/api/lottos/lotto_reserve_history/?page_size=3';
-  var method = 'GET';
-  var ctime = "";
-  var type = "";
-  var description = "";
-  var count = "";
-  $.ajax({
-    headers: {
-      'Authorization': 'Token 5600ed312824c017a167605c3258f9158e77293a',
-    },
-    url: url,
-    method: method
+    async: false
   })
     .done(function(data){
+      next = data.next;
       for( i = 0; i < data.results.length; i++ ) {
-        ctime = data.results[i]["updated_at"].split(/T/)[0];
-        //type = data.results[i]["reserve_type"];
-        description = data.results[i]["description"];
-        count = data.results[i]["user_get_lotto_count"];
-        $("row.history_list").append("<div class='mypage_history_item'><div class='ctime'>"+ctime+"</div><div class='type'>"+type+"</div><div class='name'>"+description+"</div><div class='comment'>적립</div><div class='coupon'><img src='/assets/ic_b.png'><div class='coupon_count'>"+count+"장</div></div></div>")
+        var ctime = data.results[i]["updated_at"];
+        if ( ctime != null ) {
+          ctime = ctime.split("T")[0];
+        }
+        var description = data.results[i]["description"];
+        var count = data.results[i]["user_get_lotto_count"];
+        var type = "";
+        if ( data.results[i]["extra"] != "{}") {
+          type = data.results[i]["extra"].split(':')[1].split('}')[0].split("\"")[1];
+          $("row.history_list").append("<div class='mypage_history_item'><div class='ctime'>"+ctime+"</div><div class='type'><img src='/assets/types/type"+type+".png'></div><div class='name name_type'>"+description+"</div><div class='comment'>적립</div><div class='coupon'><img src='/assets/ic_b.png'><div class='coupon_count'>"+count+"장</div></div></div>")
+        }
+        else { 
+          type = "";
+          $("row.history_list").append("<div class='mypage_history_item'><div class='ctime'>"+ctime+"</div><div class='name'>"+description+"</div><div class='comment'>적립</div><div class='coupon'><img src='/assets/ic_b.png'><div class='coupon_count'>"+count+"장</div></div></div>")
+        }
       }
     });
+  return next;
 }
 
-function point_load_history(page) {
-  var url = "http://localhost:8000/api/lottos/lotto_reserve_history?page="+page+"&page_size=3";
+function weekly_winning_num(week_id) {
+  var url = "http://localhost:8000/api/lottos/past_week?week_id="+week_id;
   var method = 'GET';
-  var ctime = "";
-  var type = "";
-  var description = "";
-  var count = "";
+  var combi = [];
   $.ajax({
-    headers: {
-      'Authorization': 'Token 5600ed312824c017a167605c3258f9158e77293a',
-    },
     url: url,
-    method: method
+    method: method,
+    async: false
   })
     .done(function(data){
-
-      for( i = 0; i < data.results.length; i++ ) {
-        ctime = data.results[i]["updated_at"].split(/T/)[0];
-        //type = data.results[i]["reserve_type"];
-        description = data.results[i]["description"];
-        count = data.results[i]["user_get_lotto_count"];
-        $("row.history_list").append("<div class='mypage_history_item'><div class='ctime'>"+ctime+"</div><div class='type'>"+type+"</div><div class='name'>"+description+"</div><div class='comment'>적립</div><div class='coupon'><img src='/assets/ic_b.png'><div class='coupon_count'>"+count+"장</div></div></div>")
-      }
+      combi = data.winning_combination.split("_");
+      combi.push(data.bonus_number);
+    })
+    .error(function(){
+      return null;
     });
+  return combi;
 }
 
 function lastweek_winning_num() {
   if($(".winning_number_list").children().length == 0) {
-    //var j = "http://localhost:8000/api/lottos/past_week";
     var j = "http://localhost:8000/api/lottos/past_week";
     var w;
     var n = [];
     var b;
 
     $.getJSON(j, function(data){
-      w = data["week_id"];
-      n = data["winning_combination"].split('_');
+      n = data["winning_combination"].split("_");
       b = data["bonus_number"];
 
       $(".winning_heading").html("전주 (" + w + "회차) 로또 당첨번호");

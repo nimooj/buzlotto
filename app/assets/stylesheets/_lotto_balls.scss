@@ -1,5 +1,32 @@
 .container {
-  .lotto_field {
+  .mypage_lotto_history_list .history_box .my_lotto_number .content {
+    @for $i from 1 through 9 {
+      .number_#{$i} {
+        color: $lotto_yellow;
+      }
+    }
+    @for $i from 10 through 19 {
+      .number_#{$i} {
+        color: $lotto_blue;
+      }
+    }
+    @for $i from 20 through 29 {
+      .number_#{$i} {
+        color: $lotto_red;
+      }
+    }
+    @for $i from 30 through 39 {
+      .number_#{$i} {
+        color: $lotto_green;
+      }
+    }
+    @for $i from 40 through 45 {
+      .number_#{$i} {
+        color: $lotto_purple;
+      }
+    }
+  }
+  .lotto_field, .mypage_lotto_history_list .history_box .content {
     @for $i from 1 through 9 {
       .lotto_inactive_#{$i} {
         border-color: $lotto_yellow;

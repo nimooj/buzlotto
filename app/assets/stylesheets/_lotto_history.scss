@@ -36,25 +36,32 @@
         font-size: 37px;
         margin-top: 60px;
       }
-      .content.balls {
+      .content {
         .lotto_ball {
-          img {
-            @media screen and (max-device-width: 420px) {
-              width: 3em;   
-              height: 3em;
-            }
-            @media screen and (max-device-width: 320px) {
-              width: 2.5em;   
-              height: 2.5em;
-            }
-            width: 81px;
-            height: 81px;
-            vertical-align: middle;
+          .num {
+            margin: 0;
+            display: inline;
+            vertical-align: text-top;
+            width: 100%;
+            height: 100%;
           }
           @media screen and (max-device-width: 420px) {
+            width: 3em;   
+            height: 3em;
             margin-right: .1em;
             margin-left: .1em; 
           }
+          @media screen and (max-device-width: 320px) {
+            width: 2.5em;   
+            height: 2.5em;
+          }
+          text-align: center;
+          width: 81px;
+          height: 81px;
+          font-family: Sans-serif;
+          font-size: 50px;
+          border-radius: 50%;
+          vertical-align: middle;
           margin-right: 11.5px;
           margin-left: 11.5px;
           display: inline-block;
@@ -96,7 +103,7 @@
           }
           float: right;
           margin-top: 10px;
-          margin-right: 38px;
+          margin-right: 48px;
           font-size: 23px;
           color: #666666;
         }
