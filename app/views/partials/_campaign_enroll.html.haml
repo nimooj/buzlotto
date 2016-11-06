@@ -22,13 +22,24 @@
       %br
       \- 로또권 지급은 최대 10분까지 늦을 수 있음
   .popup_btn
-    = link_to (image_tag "btn/camp_campenroll.png", class: 'btn_mid'), 'buzlotto://AppChecker?ad_id=231&user_id=1&package_name=com.example.app'
-    = link_to (image_tag "btn/btn_cam.png", class: 'btn_l go_campaign'), '#'
-    = link_to (image_tag "btn/camp_installcheck.png", class: 'btn_l install_check'), 'buzlotto://AppChecker?ad_id=231&user_id=1&check_package_installed=com.example.app'
-    = link_to (image_tag "btn/camp_lotto_enroll.png", class: 'btn_r'), mypage_lotto_path
+    -#cpi용 캠페인 참여
+    = link_to (image_tag "btn/camp_campenroll.png", class: 'btn_mid'), '#', class: 'cpi_camp_enroll'
+    -# 캠페인 참여
+    = link_to (image_tag "btn/btn_cam.png", class: 'btn_l go_campaign'), '#', class: 'general_camp_enroll'
+    -#cpi용 설치 확인
+    = link_to (image_tag "btn/camp_installcheck_disabled.png", class: 'btn_l install_check'), '#', class: 'cpi_install_check'
+    -# 로또 등록
+    = link_to (image_tag "btn/camp_lotto_enroll.png", class: 'btn_r'), mypage_lotto_path 
 
 :javascript
   $(function(){
+
+  $(".btn_mid").click(function(){
+    if (get_device() != "W") {
+      validate_install_check();
+    }
+  });
+
   $(".install_check").click(function(){
     camp_install_check();
   });
@@ -36,6 +47,4 @@
     $(".filter").css('display', 'none');
     $(".popup").css('display', 'none');
   });
-    //로또권 popup_txt에서 장수 highlight wrapping
-    $(".popup_txt span.highlight").append("2장");
   });

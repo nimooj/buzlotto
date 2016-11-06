@@ -1,3 +1,26 @@
+// buzlotto str match check
+//  custom user agent navigator
+function is_app() {
+  var isApp = {
+    IOSApp: function() {
+      return navigator.userAgent.match(/buzlotto_ios/i);
+    },
+    AndroidApp: function() {
+      return navigator.userAgent.match(/buzlotto_android/i);
+    }
+  }
+
+  if ( isApp.IOSApp() ) {
+    return "iosapp";
+  }
+  else if ( isApp.AndroidApp() ) {
+    return "androidapp";
+  }
+  else {
+    return "mobileweb";
+  }
+}
+
 function get_device() {
   var isMobile = { 
     Android: function() {

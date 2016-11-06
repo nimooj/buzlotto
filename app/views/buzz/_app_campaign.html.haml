@@ -4,7 +4,6 @@
       앱으로 로그인 하시면
       %br
       %span.highlight.green
-        3
       개 캠페인 더 참여가능합니다.
     %button.heading_btn
       = image_tag "ic_appdown.png"
@@ -18,13 +17,8 @@
       .available_campaign.title_type
         .available_campaign.title
           = c[:title]
-        %div{class: "available_campaign type_#{c[:type]}"}
-          - if c[:type] == 1
-            설치형
-          - elsif c[:type] == 2
-            실행형
-          - elsif c[:type] == 3
-            참여형
+        %div{class: "available_campaign type"}
+          = image_tag "types/type#{c[:type]}.png"
       .available_campaign.coupon
         = image_tag "ic_b.png"
         .coupon_count
