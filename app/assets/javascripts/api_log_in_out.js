@@ -20,6 +20,8 @@ function login() {
     }
   })
     .done(function(data){
+      var l = data.next;
+      window.location.href(next);
     });
 }
 
@@ -33,5 +35,6 @@ function logout() {
     .done(function(data){
       Cookies.remove('username');
       Cookies.remove('ticket');
+      Cookies.remove('user_token');
     });
 }

@@ -14,6 +14,30 @@ function get_user_state() {
   return user;
 }
 
+function get_user_token() {
+  var url = 'http://localhost:8000/api/get_user_auth_token';
+  var method = 'GET';
+  var token = "";
+
+  $.ajax({
+    headers: {
+      'Authorization': 'Token 5600ed312824c017a167605c3258f9158e77293a'
+    },
+    url: url,
+    method: method,
+    async: false
+  })
+    .done(function(data){
+      if ( data.is_successful ) {
+        token = data.user_auth_token;
+      }
+      else {
+        token = false;
+      }
+    });
+  return token;
+}
+
 function update_user_bank_account() {
   var bank = $(".account_input .select-box .select").val();
   var num = $(".account_input .account_number").val();

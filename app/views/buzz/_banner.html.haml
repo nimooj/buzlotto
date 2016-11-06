@@ -10,7 +10,9 @@
       var wrapper = "<div class='banner_content'><div class='banner_heading'>" + name + "님의 보유 로또권은 <span class='highlight green'>"+ticket+" 장</span>입니다.</div><div class='banner_btn'><a href='/mypage/lotto'><img class='btn_l' src='/assets/btn/btn_register.png'/></a><a href='/win'><img class='btn_r' src='/assets/btn/btn_confirm.png'></a></div></div><img class='banner_img' src='/assets/main_banner_black.png'>";
       $("row.banner").html(wrapper);
 
+      var token = get_user_token();
       Cookies.set('username', name);
       Cookies.set('ticket', ticket);
+      Cookies.set('user_token', token);
     }
   });
